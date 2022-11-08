@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
 # FS-App-Template
 
 ## Setup
@@ -47,7 +47,7 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 - start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
 
 test
-=======
+=========
 # FS-App-Template
 
 ## Setup
@@ -94,4 +94,4 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 - start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
 
 test
->>>>>>> 88ff9c3af45aad58fdb12eb750ff33780c759b48
+>>>>>>>>> Temporary merge branch 2
