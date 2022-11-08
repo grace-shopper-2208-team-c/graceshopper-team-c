@@ -1,25 +1,4 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-const router = require('express').Router()
-const { models: { User }} = require('../db')
-module.exports = router
 
-router.get('/', async (req, res, next) => {
-  try {
-    const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'username']
-    })
-    res.json(users)
-  } catch (err) {
-    next(err)
-  }
-})
-=======
->>>>>>> dd5a177306a5143a5f37954509c70b6c241bd519
 const router = require('express').Router()
 const { models: { User }} = require('../db')
 
@@ -76,8 +55,3 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 module.exports = router
-<<<<<<< HEAD
-=======
-
->>>>>>> 9d69799ab8c44e72e75edfa4dfad4c835957840b
->>>>>>> dd5a177306a5143a5f37954509c70b6c241bd519
