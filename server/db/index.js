@@ -9,7 +9,6 @@ const Order = require('./models/Order')
 //associations could go here!
 Order.belongsTo(User);
 User.hasMany(Order);
-
 Order.hasMany(Product)
 
 module.exports = {

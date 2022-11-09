@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const DataTypes = require('sequelize/lib/data-types');
+
 
 const Order = db.define('order', {
     customerId: {
@@ -7,7 +9,7 @@ const Order = db.define('order', {
         unique: false,
         allowNull: true
     },
-    products: {
+    items: {
         type: DataTypes.JSON,
         allowNull: false
     },
