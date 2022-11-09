@@ -1,20 +1,20 @@
-// import React, { useEffect } from 'react';
-// import { useParams, Link } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchProductByIdAsync, showSingleProduct } from '../reducers/singleProductSlice';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductByIdAsync, showSingleProduct } from './singleProductSlice';
 
 
 const SingleProduct = () => {
     const { id } = useParams();
 
-    const product = useSelector();
+    const product = useSelector(showSingleProduct);
 
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        console.log('fetching project');
-        dispatch();
+        console.log('fetching product');
+        dispatch(fetchProductByIdAsync(id));
     }, []);
 
     return (
