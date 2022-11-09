@@ -23,19 +23,12 @@ const AppRoutes = () => {
   return (
     <div>
       {isLoggedIn ? (
-<<<<<<< HEAD
-        <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
-        </Routes>
-=======
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route to="/home" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<SingleProduct />} />
       </Routes>
->>>>>>> 205c5766c9287439cd3023e262e1d3aa77a0050b
       ) : (
         <Routes>
 
@@ -47,7 +40,7 @@ const AppRoutes = () => {
             path="/signup"
             element={<SignupForm name="signup" displayName="Sign Up" />}
           />
-          <Route path="/*" element={<Products />} />
+          <Route path="/*" element={<Home />} />
 
         </Routes>
       )}
