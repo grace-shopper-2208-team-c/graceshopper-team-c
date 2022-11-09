@@ -1,5 +1,5 @@
 {
-  "name": "fs-app-template",
+  "name": "grace-shopper",
   "version": "2.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "main": "index.js",
@@ -20,6 +20,9 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.13",
     "bcrypt": "^5.1.0",
     "compression": "^1.7.4",
     "express": "^4.18.2",
