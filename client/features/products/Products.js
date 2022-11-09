@@ -1,7 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from './productsSlice';
 import { NavLink } from 'react-router-dom';
 import Card from '@mui/material/Card';
@@ -25,16 +23,17 @@ const Products = () => {
       {products && products.length
         ? products.map((product) => (
             <div key={`Single Product: ${product.id}`}>
-              {/* <NavLink
-                to={`/products/${product.id}`}
-                key={`All Products ${product.id}`}
-              > */}
               <div className="product row">
-                <Card sx={{ maxWidth: 345 }}>
+                <Card
+                  sx={{
+                    maxWidth: 345,
+                    minHeight: 400,
+                  }}
+                >
                   <CardMedia
                     component="img"
-                    height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
+                    height="200"
+                    image={product.image}
                     alt="shoe picture"
                   />
                   <CardContent>
@@ -42,16 +41,13 @@ const Products = () => {
                       {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Shoe Type: {product.category}
-                      <br />
-                      Description: {product.description}
+                      Type: {product.category}
                       <br />
                       Price: ${product.price}
-                      <br />
-                      {product.quantity} in stock
                     </Typography>
                   </CardContent>
                   <CardActions>
+                    <Button size="small">Prodcut Details</Button>
                     <Button size="small">Add to cart</Button>
                   </CardActions>
                 </Card>
