@@ -30,12 +30,17 @@ const Products = () => {
                     minHeight: 400,
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={product.image}
-                    alt="shoe picture"
-                  />
+                  <NavLink
+                    to={`/products/${product.id}`}
+                    key={`All Products: ${product.id}`}
+                  >
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={product.image}
+                      alt="shoe picture"
+                    />
+                  </NavLink>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       {product.name}
@@ -47,7 +52,7 @@ const Products = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Prodcut Details</Button>
+                    <Button size="small">Product Details</Button>
                     <Button size="small">Add to cart</Button>
                   </CardActions>
                 </Card>
