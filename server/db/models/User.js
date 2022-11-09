@@ -8,7 +8,6 @@ const SALT_ROUNDS = 5;
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
   },
   street_address: {
