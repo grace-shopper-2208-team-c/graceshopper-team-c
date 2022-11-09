@@ -12,6 +12,11 @@ const Product = db.define('product', {
         unique: false,
         allowNull: false
     },
+    image: {
+        type: Sequelize.STRING,
+        unique: false,
+        //allowNull: false
+    },
     price: {
         type: Sequelize.FLOAT,
         unique: false, 

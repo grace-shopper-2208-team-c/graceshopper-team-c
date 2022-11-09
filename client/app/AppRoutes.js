@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
+import SignupForm from '../features/auth/SignupForm';
 import Home from '../features/home/Home';
 import { me } from './store';
 import Products from '../features/products/Products';
@@ -20,14 +21,14 @@ const AppRoutes = () => {
 
   return (
     <div>
-      {/* {isLoggedIn ? ( */}
+      {isLoggedIn ? (
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route to="/home" element={<Home />} />
         <Route path="/products" element={<Products />} />
       </Routes>
-      {/*) : (*/}
-      {/* <Routes>
+      ) : (
+      <Routes>
         <Route
           path="/*"
           element={<AuthForm name="login" displayName="Login" />}
@@ -38,10 +39,10 @@ const AppRoutes = () => {
         />
         <Route
           path="/signup"
-          element={<AuthForm name="signup" displayName="Sign Up" />}
+          element={<SignupForm name="signup" displayName="Sign Up" />}
         />
-      </Routes> */}
-      {/* )} */}
+      </Routes>
+      )}
     </div>
   );
 };

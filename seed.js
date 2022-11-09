@@ -79,6 +79,7 @@ const users = [{
   "state":"Idaho",
   "zip": "17641",
   "phone": "+1 (991) 400-3821",
+  "username": "nelda",
   "email": "neldacarney@musanpoly.com",
   "password": "default",
   "admin": false
@@ -90,6 +91,7 @@ const users = [{
   "state":"Federated States Of Micronesia",
   "zip": "56270",
   "phone": "+1 (862) 580-2938",
+  "username": "willie",
   "email": "williejennings@musanpoly.com",
   "password": "default",
   "admin": false
@@ -102,6 +104,7 @@ const users = [{
   "zip": "28425",
   "phone": "+1 (997) 549-2497",
   "email": "jewelsparks@musanpoly.com",
+  "username": "jewel",
   "password": "default",
   "admin": true
 },
@@ -112,6 +115,7 @@ const users = [{
   "state":"Oregon",
   "zip": "53723",
   "phone": "+1 (855) 459-3653",
+  "username": "cristina",
   "email": "cristinacontreras@musanpoly.com",
   "password": "default",
   "admin": false
@@ -123,6 +127,7 @@ const users = [{
   "state":"North Carolina",
   "zip": "38999",
   "phone": "+1 (854) 459-2726",
+  "username": "evans",
   "email": "evanssmall@musanpoly.com",
   "password": "default",
   "admin": false
@@ -134,6 +139,7 @@ const users = [{
   "state":"Delaware",
   "zip": "29083",
   "phone": "+1 (852) 585-3198",
+  "username": "barker",
   "email": "barkerbooker@musanpoly.com",
   "password": "default",
   "admin": true
