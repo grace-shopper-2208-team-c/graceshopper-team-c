@@ -41,7 +41,7 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-      const remvoeProduct = await Product.destroy({ where: { id: req.params.id } })
+      const removeProduct = await Product.destroy({ where: { id: req.params.id } })
       res.json(removeProduct)
     }
     catch (err) {
