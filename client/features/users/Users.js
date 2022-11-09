@@ -6,16 +6,15 @@ import { allUsers, fetchUsers } from './usersSlice';
 import { NavLink } from 'react-router-dom';
 
 const AllUsers = () => {
-    const users = useSelector();
-
     const dispatch = useDispatch();
+    const users = useSelector(allUsers);
+    // console.log(users);
 
     const Navigate = useNavigate();
 
     useEffect(() => {
-        dispatch();
-        dispatch();
-    }, []);
+        dispatch(fetchUsers());
+    }, [dispatch]);
 
     const handleDelete = async () => {
         dispatch();
