@@ -6,38 +6,20 @@ const Product = require('./server/db/models/Product');
 const Order = require('./server/db/models/Order');
 
 const orders = [{
-  "products": { 1: { quantity: 2, price: 2385.33 } },
+  "items": { 1: { quantity: 2, price: 2385.33 } },
   "total": 4770.66,
   "date": "2022-11-08",
 },
 {
-  "products": {2: { quantity: 1, price: 8480.99 }},
+  "items": {2: { quantity: 1, price: 8480.99 }},
   "total": 8480.99,
   "date": "2022-11-08",
 },
 {
-  "products": {3: {quantity: 3, price: 8674.19}, 4: {quantity: 2, price: 3409.11}},
+  "items": {3: {quantity: 3, price: 8674.19}, 4: {quantity: 2, price: 3409.11}},
   "total": 32840.79,
   "date": "2022-11-08",
 },
-// {
-//   "products": {},
-//   "total": 1200.18,
-//   "date": "2022-11-08",
-//   "isCart": false
-// },
-// {
-//   "products": {},
-//   "total": 8422.35,
-//   "date": "2022-11-08",
-//   "isCart": true
-// },
-// {
-//   "products": {},
-//   "total": 422.44,
-//   "date": "2022-11-08",
-//   "isCart": true
-// }
 ];
 
 const products = [{
@@ -92,7 +74,10 @@ const products = [{
 
 const users = [{
   "name": "Nelda Carney",
-  "address": "941 Frank Court, Fairfield, Idaho, 17641",
+  "street_address": "941 Frank Court",
+  "city": "Fairfield",
+  "state":"Idaho",
+  "zip": "17641",
   "phone": "+1 (991) 400-3821",
   "email": "neldacarney@musanpoly.com",
   "password": "default",
@@ -100,7 +85,10 @@ const users = [{
 },
 {
   "name": "Willie Jennings",
-  "address": "162 Grand Street, Carrizo, Federated States Of Micronesia, 56270",
+  "street_address": "162 Grand Street",
+  "city": "Carrizo",
+  "state":"Federated States Of Micronesia",
+  "zip": "56270",
   "phone": "+1 (862) 580-2938",
   "email": "williejennings@musanpoly.com",
   "password": "default",
@@ -108,7 +96,10 @@ const users = [{
 },
 {
   "name": "Jewel Sparks",
-  "address": "611 Ellery Street, Lisco, Indiana, 28425",
+  "street_address": "611 Ellery Street",
+  "city": "Lisco",
+  "state":"Indiana",
+  "zip": "28425",
   "phone": "+1 (997) 549-2497",
   "email": "jewelsparks@musanpoly.com",
   "password": "default",
@@ -116,7 +107,10 @@ const users = [{
 },
 {
   "name": "Cristina Contreras",
-  "address": "923 Ira Court, Bennett, Oregon, 53723",
+  "street_address": "923 Ira Court",
+  "city": "Bennett",
+  "state":"Oregon",
+  "zip": "53723",
   "phone": "+1 (855) 459-3653",
   "email": "cristinacontreras@musanpoly.com",
   "password": "default",
@@ -124,7 +118,10 @@ const users = [{
 },
 {
   "name": "Evans Small",
-  "address": "146 Tampa Court, Ladera, North Carolina, 38999",
+  "street_address": "146 Tampa Court",
+  "city": "Ladera",
+  "state":"North Carolina",
+  "zip": "38999",
   "phone": "+1 (854) 459-2726",
   "email": "evanssmall@musanpoly.com",
   "password": "default",
@@ -132,7 +129,10 @@ const users = [{
 },
 {
   "name": "Barker Booker",
-  "address": "428 Lawton Street, Ogema, Delaware, 29083",
+  "street_address": "428 Lawton Street",
+  "city": "Ogema",
+  "state":"Delaware",
+  "zip": "29083",
   "phone": "+1 (852) 585-3198",
   "email": "barkerbooker@musanpoly.com",
   "password": "default",
@@ -143,14 +143,17 @@ const seed = async () => {
   try {
     await db.sync({ force: true });
 
-    await Promise.all(projects.map(project => {
-      return Project.create(project);
+    await Promise.all(orders.map(order => {
+      return Order.create(order);
     }));
 
-    await Promise.all(robots.map(robot => {
-      return Robot.create(robot);
+    await Promise.all(products.map(product => {
+      return Product.create(product);
     }));
 
+    await Promise.all(users.map(user => {
+      return User.create(user);
+    }));
   } catch (err) {
     console.log(red(err));
   }
