@@ -5,7 +5,11 @@ import productsSlice from '../features/products/productsSlice';
 import singleProductSlice from '../features/products/singleProductSlice';
 
 const store = configureStore({
-  reducer: { auth: authReducer, products: productsSlice, single_product: singleProductSlice },
+  reducer: {
+    auth: authReducer,
+    products: productsSlice,
+    single_product: singleProductSlice,
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
