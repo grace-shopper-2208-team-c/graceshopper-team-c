@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authenticate } from '../../app/store';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -21,26 +24,40 @@ const AuthForm = ({ name, displayName }) => {
   };
 
   return (
-    <div>
+    <>
+    <Box
+sx={{
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: "center",
+  alignItems: "center",
+  '& > :not(style)': {
+    m: 1,
+    width: 200,
+    padding: 3,
+  },
+}}
+>
+<Paper elevation={3}>
+  <h2 align='center'>Login</h2>
       <form onSubmit={handleSubmit} name={name}>
         <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
+
+          <input name="username" placeholder="Username" type="text" required/>
         </div>
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+
+          <input name="password" placeholder="Password" type="password" required/>
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+        <Button variant="contained" type="submit">{displayName}</Button>
         </div>
         {error && <div> {error} </div>}
       </form>
-    </div>
+          </Paper>
+          </Box>
+    
+        </>
   );
 };
 

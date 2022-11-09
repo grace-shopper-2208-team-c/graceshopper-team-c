@@ -1,6 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { authenticate } from '../../app/store';
+import { register } from '../../app/store';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -24,84 +28,91 @@ const SignupForm = ({ name, displayName }) => {
     const zip = evt.target.zip.value;
     const phone = evt.target.phone.value;
     const email = evt.target.email.value;
+    
 
-    dispatch(authenticate({ username, password, method: formName }));
+    dispatch(register({ name, street_address, city, state, zip, phone, email, username, password }));
   };
 
   return (
-    <div>
+    <>
+          <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: "center",
+        alignItems: "center",
+        '& > :not(style)': {
+          m: 1,
+          width: 200,
+          padding: 4,
+        },
+      }}
+    >
+      <Paper elevation={3}>
+        <p><strong>Fill out the form below to register!</strong></p>
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">
-            <small>Username</small>
           </label>
-          <input name="username" type="text" />
+          <input name="username" placeholder="Username" type="text" required/>
         </div>
         <div>
           <label htmlFor="password">
-            <small>Password</small>
           </label>
-          <input name="password" type="password" />
+          <input name="password" placeholder="Password" type="password" required/>
         </div>
     
-
         <div>
           <label htmlFor="name">
-            <small>Name</small>
           </label>
-          <input name="name" type="text" />
+          <input name="name" placeholder="Name" type="text" required/>
         </div>
 
         <div>
           <label htmlFor="street_address">
-            <small>Street Address</small>
           </label>
-          <input name="street_address" type="text" />
+          <input name="street_address" placeholder="Street Address" type="text" required/>
         </div>
 
         <div>
           <label htmlFor="city">
-            <small>City</small>
           </label>
-          <input name="city" type="text" />
+          <input name="city" placeholder="City" type="text" required/>
         </div>
 
         <div>
           <label htmlFor="state">
-            <small>State</small>
           </label>
-          <input name="state" type="text" />
+          <input name="state" placeholder="State" type="text" required/>
         </div>
 
         <div>
           <label htmlFor="zip">
-            <small>Zip</small>
           </label>
-          <input name="zip" type="text" />
+          <input name="zip" placeholder="Zipcode" type="text" required/>
         </div>
 
         <div>
           <label htmlFor="phone">
-            <small>Phone</small>
           </label>
-          <input name="phone" type="text" />
+          <input name="phone" placeholder="Phone Number" type="text" required/>
         </div>
 
         <div>
           <label htmlFor="email">
-            <small>E-mail</small>
           </label>
-          <input name="email" type="text" />
+          <input name="email" placeholder="E-mail" type="text" required/>
         </div>
-
-
-
+<br></br>
         <div>
-          <button type="submit">{displayName}</button>
+          <Button variant="contained" type="submit">{displayName}</Button>
         </div>
         {error && <div> {error} </div>}
       </form>
-    </div>
+      </Paper>
+      </Box>
+
+    </>
   );
 };
 

@@ -11,11 +11,15 @@ const Navbar = () => {
     dispatch(logout());
     navigate('/login');
   };
+  <h1><Link to="/">Grace HOPS</Link></h1>
 
   return (
-    <div>
-      <h1>FS-App-Template</h1>
+    <>
+    <div class='topnav'>
+    <h1><Link to="/">Grace HOPS</Link></h1>
+
       <nav>
+
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
@@ -25,15 +29,17 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <div>
+          <div class='authbuttons'>
             {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </nav>
-      <hr />
     </div>
+    <hr />
+
+    </>
   );
 };
 

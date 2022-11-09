@@ -35,7 +35,25 @@ export const authenticate = createAsyncThunk(
   'auth/authenticate',
   async ({ username, password, method }, thunkAPI) => {
     try {
+      console.log(method)
       const res = await axios.post(`/auth/${method}`, { username, password });
+      window.localStorage.setItem(TOKEN, res.data.token);
+      thunkAPI.dispatch(me());
+    } catch (err) {
+      if (err.response.data) {
+        return thunkAPI.rejectWithValue(err.response.data);
+      } else {
+        return 'There was an issue with your request.';
+      }
+    }
+  }
+);
+
+export const register = createAsyncThunk(
+  'auth/signup',
+  async ({ name, street_address, city, state, zip, phone, email, username, password }, thunkAPI) => {
+    try {
+      const res = await axios.post(`/auth/signup`, { name, street_address, city, state, zip, phone, email, username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
       thunkAPI.dispatch(me());
     } catch (err) {
@@ -72,6 +90,9 @@ export const authSlice = createSlice({
       state.error = action.error;
     });
     builder.addCase(authenticate.rejected, (state, action) => {
+      state.error = action.payload;
+    });
+    builder.addCase(register.rejected, (state, action) => {
       state.error = action.payload;
     });
   },

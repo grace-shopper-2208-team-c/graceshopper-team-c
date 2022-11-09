@@ -29,3 +29,13 @@ form div {
 .product.row img {
   width: 300px;
 }
+
+.topnav a {
+  text-decoration: none;
+}
+
+.topnav a:visited {
+  text-decoration: none;
+  color: black
+}
+
