@@ -1,11 +1,12 @@
-// import React, { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { fetchUsersAsync, deleteUserAsync, overWriteState, showAllUsers } from '../reducers/usersSlice';
-// import AddUser from './AddUser';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { allUsers, fetchUsers } from './usersSlice';
+import { NavLink } from 'react-router-dom';
 
 const AllUsers = () => {
-    const robots = useSelector();
+    const users = useSelector();
 
     const dispatch = useDispatch();
 
@@ -25,13 +26,9 @@ const AllUsers = () => {
         <>
         <h2>Users</h2>
 
-        {/* <div className='add-user'>
-            <AddUser />
-        </div> */}
-
         <div className='all-users'>
-            {robots.map((user) => {
-                return (<div key={robot.id} className='robot'>
+            {users.map((user) => {
+                return (<div key={user.id} className='user'>
                     <Link key={user.id} to={ `/users/${user.id}`}>
                         <h3>{user.name}</h3>
                     </Link>
