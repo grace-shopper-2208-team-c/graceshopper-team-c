@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector(allProducts);
-  console.log(products);
 
   useEffect(() => {
     dispatch(fetchProducts());

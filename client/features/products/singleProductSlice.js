@@ -22,7 +22,6 @@ const singleProductSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProductByIdAsync.fulfilled, (state, action) => {
-      console.log('Action payload is ', action.payload);
       return action.payload;
     });
   },

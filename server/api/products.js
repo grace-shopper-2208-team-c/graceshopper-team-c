@@ -5,7 +5,6 @@ const { models: { Product }} = require('../db')
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll()
-    console.log("products are ", products);
     res.json(products)
   } catch (err) {
     next(err)
@@ -16,7 +15,6 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
-    console.log("product is ", product);
     res.json(product);
   } catch (err) {
     next(err);

@@ -8,12 +8,9 @@ const SingleProduct = () => {
 
   const product = useSelector(showSingleProduct);
 
-  console.log(product);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('fetching product');
     dispatch(fetchProductByIdAsync(id));
   }, []);
 
