@@ -11,24 +11,22 @@ export const fetchProductByIdAsync = createAsyncThunk('singleProduct', async (id
 });
 
 const singleProductSlice = createSlice({
-    name: 'product',
+    name: 'singleProduct',
     initialState: {
-      product: {},
+      singleProduct: {},
       loading: false,
     },
     reducers: {},
     extraReducers: (builder) => {
       builder.addCase(fetchProductByIdAsync.fulfilled, (state, action) => {
-        state.product = action.payload;
+        console.log("Action payload is ", action.payload)
+        state.singleProduct = action.payload; //likely culprit
       });
     },
 });
 
 export const showSingleProduct = (state) => {
-    return state.singleProduct.product;
+    return state.singleProduct;
 };
-  
-  
-const SingleProductReducer = singleProductSlice.reducer;
     
-export default SingleProductReducer;
+export default singleProductSlice.reducer;

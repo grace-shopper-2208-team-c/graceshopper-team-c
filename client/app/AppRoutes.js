@@ -6,6 +6,7 @@ import SignupForm from '../features/auth/SignupForm';
 import Home from '../features/home/Home';
 import { me } from './store';
 import Products from '../features/products/Products';
+import SingleProduct from '../features/products/SingleProduct';
 
 /**
  * COMPONENT
@@ -22,10 +23,19 @@ const AppRoutes = () => {
   return (
     <div>
       {isLoggedIn ? (
+<<<<<<< HEAD
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
         </Routes>
+=======
+      <Routes>
+        <Route path="/*" element={<Home />} />
+        <Route to="/home" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
+      </Routes>
+>>>>>>> 205c5766c9287439cd3023e262e1d3aa77a0050b
       ) : (
         <Routes>
 
