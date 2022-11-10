@@ -2,18 +2,12 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductByIdAsync, showSingleProduct } from './singleProductSlice';
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
-
-
-
-
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -28,10 +22,10 @@ const SingleProduct = () => {
 
   return (
     <div className="single-product">
-      <Card 
-        sx={{ 
-        maxWidth: 600, 
-        minHeight: 800,
+      <Card
+        sx={{
+          maxWidth: 600,
+          minHeight: 800,
         }}
       />
       <CardMedia
