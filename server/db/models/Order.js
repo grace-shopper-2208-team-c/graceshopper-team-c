@@ -4,15 +4,6 @@ const DataTypes = require('sequelize/lib/data-types');
 
 
 const Order = db.define('order', {
-    customerId: {
-        type: Sequelize.STRING,
-        unique: false,
-        allowNull: true
-    },
-    items: {
-        type: DataTypes.JSON,
-        allowNull: false
-    },
     total: {
         type: Sequelize.FLOAT,
         allowNull: false
@@ -21,12 +12,11 @@ const Order = db.define('order', {
         type: Sequelize.DATE,
         allowNull: false,
     },
-    isCart: {
-        type: Sequelize.BOOLEAN,
+    status: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: false
-    }
-    
+        defaultValue: ''
+    }  
 })
 
 module.exports = Order

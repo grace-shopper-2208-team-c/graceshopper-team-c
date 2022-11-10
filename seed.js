@@ -4,25 +4,18 @@ const { db } = require('./server/db');
 const User = require('./server/db/models/User');
 const Product = require('./server/db/models/Product');
 const Order = require('./server/db/models/Order');
+const Orders_Product = require('./server/db/models/Orders_Product')
 
 const orders = [
   {
-    items: { 1: { quantity: 2, price: 2385.33 } },
-    total: 4770.66,
+    total: 20371.09,
     date: '2022-11-08',
+    status: 'complete',
   },
   {
-    items: { 2: { quantity: 1, price: 8480.99 } },
-    total: 8480.99,
+    total: 60571.53,
     date: '2022-11-08',
-  },
-  {
-    items: {
-      3: { quantity: 3, price: 8674.19 },
-      4: { quantity: 2, price: 3409.11 },
-    },
-    total: 32840.79,
-    date: '2022-11-08',
+    status: 'complete',
   },
 ];
 
@@ -170,6 +163,25 @@ const users = [
   },
 ];
 
+const orders_products = [{
+  orderId: 1,
+  productId: 2,
+  quantity: 2, 
+  price: 8480.99,
+},
+{
+  orderId: 1,
+  productId: 3,
+  quantity: 1,
+  price: 3409.11,
+},
+{
+  orderId: 2,
+  productId: 6,
+  quantity: 9,
+  price: 6730.17,
+}];
+
 const seed = async () => {
   try {
     await db.sync({ force: true });
@@ -189,6 +201,13 @@ const seed = async () => {
     await Promise.all(
       users.map((user) => {
         return User.create(user);
+      })
+    );
+
+    
+    await Promise.all(
+      orders_products.map((order_product) => {
+        return Orders_Product.create(order_product);
       })
     );
   } catch (err) {
