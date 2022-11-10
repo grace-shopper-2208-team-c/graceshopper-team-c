@@ -4,10 +4,6 @@ const DataTypes = require('sequelize/lib/data-types');
 
 
 const Order = db.define('order', {
-    items: {
-        type: DataTypes.JSON,
-        allowNull: false
-    },
     total: {
         type: Sequelize.FLOAT,
         allowNull: false
