@@ -4,11 +4,6 @@ const DataTypes = require('sequelize/lib/data-types');
 
 
 const Order = db.define('order', {
-    customerId: {
-        type: Sequelize.STRING,
-        unique: false,
-        allowNull: true
-    },
     items: {
         type: DataTypes.JSON,
         allowNull: false
