@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchUserOrdersByUserIdAsync = createAsyncThunk(
-  'userOrders',
+export const fetchCartByUserIdAsync = createAsyncThunk(
+  'userCart',
   async (userId) => {
     try {
-      const { data } = await axios.get(`/api/orders/userOrders/${userId}`);
+      const { data } = await axios.get(`/api/orders/cart/${userId}`);
       return data;
     } catch (err) {
       console.log(err);
@@ -13,19 +13,19 @@ export const fetchUserOrdersByUserIdAsync = createAsyncThunk(
   }
 );
 
-const userOrdersSlice = createSlice({
-  name: 'user_orders',
+const userCartSlice = createSlice({
+  name: 'user_cart',
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchUserOrdersByUserIdAsync.fulfilled, (state, action) => {
+    builder.addCase(fetchCartByUserIdAsync.fulfilled, (state, action) => {
       return action.payload;
     });
   },
 });
 
-export const showAllUserOrders = (state) => {
-  return state.user_orders;
+export const showUserCart = (state) => {
+  return state.user_cart;
 };
 
-export default userOrdersSlice.reducer;
+export default userCartSlice.reducer;
