@@ -41,7 +41,6 @@ const Settings = () => {
       <Box
         sx={{
           display: 'flex',
-          flexWrap: 'wrap',
           '& > :not(style)': {
             width: 300,
             height: 250,
