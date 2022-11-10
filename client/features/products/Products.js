@@ -35,7 +35,7 @@ const Products = () => {
                   >
                     <CardMedia
                       component="img"
-                      height="220"
+                      height="290"
                       image={product.image}
                       alt="shoe picture"
                     />
@@ -51,7 +51,14 @@ const Products = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Product Details</Button>
+                    <Button size="small">
+                      <NavLink
+                        to={`/products/${product.id}`}
+                        className="active"
+                      >
+                        Product Details
+                      </NavLink>
+                    </Button>
                     <Button size="small">Add to cart</Button>
                   </CardActions>
                 </Card>
