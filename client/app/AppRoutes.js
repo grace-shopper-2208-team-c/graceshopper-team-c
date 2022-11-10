@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import SignupForm from '../features/auth/SignupForm';
 import Cart from '../features/cart/Cart';
+import Settings from '../features/settings/Settings';
 import { me } from './store';
 import Products from '../features/products/Products';
 import SingleProduct from '../features/products/SingleProduct';
@@ -23,13 +24,14 @@ const AppRoutes = () => {
   return (
     <div>
       {isLoggedIn ? (
-      <Routes>
+        <Routes>
           <Route path="/*" element={<Products />} />
           <Route to="/home" element={<Products />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
-      </Routes>
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       ) : (
         <Routes>
           <Route
