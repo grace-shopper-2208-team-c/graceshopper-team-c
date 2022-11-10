@@ -41,7 +41,7 @@ const Products = () => {
                     />
                   </NavLink>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" className="productTitle">
                       {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -51,7 +51,9 @@ const Products = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">
+                    <Button 
+                    variant="outlined"
+                    size="medium">
                       <NavLink
                         to={`/products/${product.id}`}
                         className="active"
@@ -59,7 +61,9 @@ const Products = () => {
                         Product Details
                       </NavLink>
                     </Button>
-                    <Button size="small">Add to cart</Button>
+                    <Button 
+                    variant="outlined"
+                    size="medium">Add to cart</Button>
                   </CardActions>
                 </Card>
               </div>

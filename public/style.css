@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+
 }
 
 a {
@@ -12,7 +13,7 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  padding-left: 20px;
 }
 
 form div {
@@ -24,7 +25,7 @@ form div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
+  background-color:rgb(248, 245, 245);
 }
 
 .product.row {
@@ -40,12 +41,23 @@ form div {
   width: 400px;
 }
 
+.productTitle {
+height: 64px;
+}
+
 .topnav {
   overflow: hidden;
 }
 
 .topnav a {
   text-decoration: none;
+  color: black;
+}
+
+.topnav h1 {
+  font-size: 30px;
+  border-right: 6px solid #ccc!important;
+  padding-right: 8px;
 }
 
 .topnav a:visited {
@@ -59,4 +71,29 @@ form div {
 
 .righttopnav {
   float: right;
+  margin-right: 20px
+}
+
+
+
+.righttopnav a{
+  margin-top:20px;
+  font-size:20px;
+}
+
+.righttopnav a:hover{
+  color:darkgrey;
+}
+
+.MuiButton-root{
+  text-decoration: none;
+  color: black
+}
+
+.active {
+  color: #1976d2;
+}
+
+.authform {
+  background-color: rgb(248, 245, 245);
 }
