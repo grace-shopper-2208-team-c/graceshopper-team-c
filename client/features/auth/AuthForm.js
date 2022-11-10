@@ -26,7 +26,7 @@ const AuthForm = ({ name, displayName }) => {
   };
 
   return (
-    <>
+    <div className="authform">
       <Box
         sx={{
           display: 'flex',
@@ -65,7 +65,7 @@ const AuthForm = ({ name, displayName }) => {
         </Paper>
       </Box>
 
-    </>
+    </div>
   );
 };
 
