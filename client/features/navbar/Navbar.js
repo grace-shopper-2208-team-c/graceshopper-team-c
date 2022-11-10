@@ -2,12 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store';
-<<<<<<< HEAD
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-=======
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SettingsIcon from '@mui/icons-material/Settings';
->>>>>>> 59aa8a5459bddd740d573776f133b1478b45bf2e
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
