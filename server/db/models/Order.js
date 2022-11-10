@@ -16,12 +16,11 @@ const Order = db.define('order', {
         type: Sequelize.DATE,
         allowNull: false,
     },
-    isCart: {
-        type: Sequelize.BOOLEAN,
+    status: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: false
-    }
-    
+        defaultValue: ''
+    }  
 })
 
 module.exports = Order

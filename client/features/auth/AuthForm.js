@@ -50,7 +50,10 @@ sx={{
           <input name="password" placeholder="Password" type="password" required/>
         </div>
         <div>
-        <Button variant="contained" type="submit">{displayName}</Button>
+        <Button 
+        variant="contained" 
+        type="submit"
+        fullWidth>{displayName}</Button>
         </div>
         {error && <div> {error} </div>}
       </form>
