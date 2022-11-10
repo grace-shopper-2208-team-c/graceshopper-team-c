@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 const Navbar = () => {
@@ -13,43 +13,41 @@ const Navbar = () => {
     dispatch(logout());
     navigate('/login');
   };
-  <h1>
-    <Link to="/">Grace HOPS</Link>
-  </h1>;
 
   return (
     <>
-      <div className="topnav">
-        <h1>
-          <Link to="/">Grace HOPS</Link>
-        </h1>
+    <div className='topnav'>
 
-        <nav>
-          {isLoggedIn ? (
-            <div>
-              {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
-              <button type="button" onClick={logoutAndRedirectHome}>
-                Logout
-              </button>
-              <Link to="/cart">
-                <ShoppingCartIcon />
-              </Link>
-              <Link to="/settings">
+      <nav>
+
+        {isLoggedIn ? (
+          <div>
+            <div className = "lefttopnav"><h1><Link to="/">Grace HOPS</Link></h1></div>
+              <div className = "righttopnav">
+            <Link to="/home">Home</Link>
+            <button type="button" onClick={logoutAndRedirectHome}>
+              Logout
+            </button>
+            <Link to="/settings">
                 <SettingsIcon />
               </Link>
+            <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
             </div>
-          ) : (
-            <div className="authbuttons">
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/cart">Cart</Link>
-            </div>
-          )}
-        </nav>
-      </div>
-      <hr />
+          </div>
+        ) : (
+          <div>
+            <div className = "lefttopnav"><h1><Link to="/">Grace HOPS</Link></h1></div>
+              <div className = "righttopnav">
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
+
+          </div>
+          </div>
+        )}
+      </nav>
+    </div>
+<hr></hr>
     </>
   );
 };

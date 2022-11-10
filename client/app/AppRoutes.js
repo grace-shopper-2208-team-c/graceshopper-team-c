@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import SignupForm from '../features/auth/SignupForm';
 import Cart from '../features/cart/Cart';
-import Settings from '../features/settings/Settings';
+import Settings from '../features/userInformation/Settings';
 import { me } from './store';
 import Products from '../features/products/Products';
 import SingleProduct from '../features/products/SingleProduct';
