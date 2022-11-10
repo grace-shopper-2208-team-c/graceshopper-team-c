@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../app/store';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -27,8 +28,7 @@ const Navbar = () => {
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
-            <Link to="/cart">Cart</Link>
-
+            <Link to="/cart"><ShoppingCartIcon /></Link>
           </div>
         ) : (
           <div className='authbuttons'>
