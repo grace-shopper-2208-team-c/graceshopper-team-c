@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <>
-    <div class='topnav'>
+    <div className='topnav'>
     <h1><Link to="/">Grace HOPS</Link></h1>
 
       <nav>
@@ -27,12 +27,16 @@ const Navbar = () => {
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
+            <Link to="/cart">Cart</Link>
+
           </div>
         ) : (
-          <div class='authbuttons'>
+          <div className='authbuttons'>
             {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
+            <Link to="/cart">Cart</Link>
+
           </div>
         )}
       </nav>
