@@ -50,11 +50,7 @@ const User = db.define('user', {
   admin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
-  },
-  cart: {
-    type: Sequelize.JSON,
-    allowNull: true,
-  },
+  }
 });
 
 module.exports = User;

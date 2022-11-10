@@ -1,11 +1,19 @@
 import React from 'react';
-//import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 /**
  * COMPONENT
  */
 const Cart = () => {
   //const name = useSelector((state) => state.auth.me.name);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+
+
+
+  {isLoggedIn ? (
+    
+    
+  )}
 
   return (
     <div>

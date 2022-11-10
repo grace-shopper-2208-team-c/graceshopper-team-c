@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Order }} = require('../db')
+const { models: { Order } } = require('../db')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -10,6 +10,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//Get order by order id
 router.get('/:id', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id);
@@ -19,22 +20,36 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+//Get all orders by user id
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const userOrders = await Order.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    });
+    res.json(userOrders);
+  } catch (err) {
+    next(err);
+  }
+})
+
 router.put('/:id', async (req, res, next) => {
   try {
-    const updateOrder = await Order.update(req.body, { where: { id: req.params.id} })
+    const updateOrder = await Order.update(req.body, { where: { id: req.params.id } })
     res.json(updateOrder)
   }
   catch (err) {
     next(err)
   }
-}) 
+})
 
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await Order.create(req.body)
     res.json(newOrder)
   }
-  catch (err){
+  catch (err) {
     next(err);
   }
 })
