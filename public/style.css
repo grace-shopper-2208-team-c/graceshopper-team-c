@@ -26,8 +26,17 @@ form div {
   justify-content: center;
 }
 
+.product.row {
+  padding: 10px;
+}
+
+.product.row div{
+  max-width: 400px;
+  max-height: 500px;
+}
+
 .product.row img {
-  width: 300px;
+  width: 400px;
 }
 
 .topnav a {
