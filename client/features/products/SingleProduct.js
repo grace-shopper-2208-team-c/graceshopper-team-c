@@ -2,12 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductByIdAsync, showSingleProduct } from './singleProductSlice';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { addToCart } from '../cart/cartSlice'; //imported cart functions
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -20,45 +15,28 @@ const SingleProduct = () => {
     dispatch(fetchProductByIdAsync(id));
   }, []);
 
+  //Added functionality to "add to cart" button
   return (
     <div className="single-product">
-      <Card
-        sx={{
-          maxWidth: 600,
-          minHeight: 800,
-        }}
-      />
-      <CardMedia
-        component="img"
-        height="500"
-        image={product.image}
-        alt="selected product"
-      />
-      <CardContent>
-        <h3>Selected Product</h3>
+      <img className="single-image" src={product.image} />
+      <div className="product-details">
+        <h3>${product.price}</h3>
         <br />
-        <Typography gutterBottom variant="h3">
-          Price: ${product.price}
-        </Typography>
-        <br />
-        <Typography gutterBottom variant="h3">
-          {product.name}
-        </Typography>
-        <br />
-        <Typography gutterBottom variant="h3">
-          Description: {product.description}
-        </Typography>
-        <br />
-        <Typography gutterBottom variant="h3">
-          Category: {product.category}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="medium">Add To Cart</Button>
-        <Button size="medium">Share</Button>
-      </CardActions>
+        <p>{product.name}</p>
+        <p>{product.description}</p>
+        <p>Category: {product.category}</p>
+      </div>
+      <br />
+      <div>
+        <button className="single-add-cart">Add To Cart</button>
+        {/* <button onClick={() => 
+        dispatch(addToCart({
+          name, image, price
+        }))}>Add To Cart</button> */}
+      </div>
     </div>
   );
 };
+
 
 export default SingleProduct;
