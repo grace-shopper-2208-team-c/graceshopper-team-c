@@ -3,54 +3,53 @@ import { useSelector, useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { fetchSingleUser } from './settingsSlice';
+import EditIcon from '@mui/icons-material/Edit';
+import EditUser from './EditUser';
+import OrderHistory from './OrderHistory';
 
 const Settings = () => {
   const user = useSelector((state) => state.auth.me);
-  console.log(user);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSingleUser(user.id));
   }, []);
 
-  const [city, setCity] = useState('');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [state, setState] = useState('');
-  const [street_address, setStreet] = useState('');
-  const [zip, setZip] = useState('');
-  const [id, setId] = useState('');
-
-  async function editUser(evt) {
-    await axios.put(`/api/users/${user.id}`, {
-      city,
-      email,
-      name,
-      phone,
-      state,
-      street_address,
-      zip,
-      id,
-    });
-  }
+  const [openPopup, setOpenPopup] = useState(false);
 
   return (
-    <div>
+    <div className="settingsDiv">
       <h2>Settings Page</h2>
       <Box
         sx={{
           display: 'flex',
-          flexWrap: 'wrap',
           '& > :not(style)': {
-            width: 300,
-            height: 250,
+            m: 1,
+            width: 500,
+            height: 220,
             padding: 3,
           },
         }}
+        className="muiBoxSettings"
       >
         <Paper elevation={6}>
-          <h2>User Information</h2>
+          <div>
+            <div style={{ display: 'flex' }}>
+              <div style={{ flexGrow: 1 }}>
+                <h2>User Information</h2>
+              </div>
+              <EditIcon
+                style={{ display: 'flex', marginTop: 20 }}
+                sx={{ '&:hover': { color: 'darkgrey', cursor: 'pointer' } }}
+                onClick={() => setOpenPopup(true)}
+              ></EditIcon>
+            </div>
+          </div>
+          <EditUser
+            user={user}
+            openPopup={openPopup}
+            setOpenPopup={setOpenPopup}
+          ></EditUser>
           <hr></hr>
           <label>Name: {user.name}</label>
           <label>Email: {user.email}</label>
@@ -60,9 +59,23 @@ const Settings = () => {
           <label>City: {user.city}</label>
           <label>State: {user.state}</label>
         </Paper>
-        <Paper elevation={6}>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          '& > :not(style)': {
+            m: 1,
+            width: 488,
+            padding: 4,
+          },
+        }}
+      >
+        <Paper elevation={8}>
           <h2>Order History</h2>
           <hr></hr>
+          <OrderHistory id={user.id} />
         </Paper>
       </Box>
     </div>
