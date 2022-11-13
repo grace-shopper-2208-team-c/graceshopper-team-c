@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent } from '@mui/material';
-import CancelIcon from '@mui/icons-material/Cancel';
 import { useDispatch } from 'react-redux';
 import { fetchSingleUser } from './settingsSlice';
+import axios from 'axios';
+import { Dialog, DialogTitle, DialogContent } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import axios from 'axios';
+import Button from '@mui/material/Button';
 
 const EditUser = (props) => {
   const { openPopup, setOpenPopup, user } = props;
@@ -42,7 +43,18 @@ const EditUser = (props) => {
     <Dialog open={openPopup}>
       <DialogTitle>
         <div style={{ display: 'flex' }}>
-          <div style={{ flexGrow: 1 }}>Edit Information</div>
+          <div
+            style={{
+              flexGrow: 1,
+              textAlign: 'center',
+              marginBottom: -50,
+              marginLeft: 25,
+            }}
+          >
+            <p>
+              <strong>Edit Account Details</strong>
+            </p>
+          </div>
           <CancelIcon
             sx={{ '&:hover': { color: 'darkgrey', cursor: 'pointer' } }}
             onClick={() => {
@@ -56,15 +68,15 @@ const EditUser = (props) => {
           <Box
             sx={{
               '& > :not(style)': {
-                m: 1,
+                m: 6,
                 width: 180,
-                height: 400,
-                padding: 2,
-                paddingLeft: 5,
+                height: 430,
+                padding: 5,
+                paddingLeft: 8,
               },
             }}
           >
-            <Paper elevation={7}>
+            <Paper elevation={8}>
               <form onSubmit={editUser}>
                 <label>Name:</label>
                 <input
@@ -130,7 +142,14 @@ const EditUser = (props) => {
                   required
                 />
                 <br></br>
-                <button type="submit">Submit</button>
+                <br></br>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  style={{ marginLeft: 35 }}
+                >
+                  Submit
+                </Button>
               </form>
             </Paper>
           </Box>
