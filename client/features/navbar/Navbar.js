@@ -7,6 +7,18 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+
+  //adding cart const and total quantity
+
+  // const cart = useSelector((state) => state.cart);
+  // const getTotalQuantity = () => {
+  //   let total = 0
+  //   cart.forEach(item => {
+  //     total += item.quantity
+  //   })
+  //   return total
+  // };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -35,6 +47,7 @@ const Navbar = () => {
                 </Link>
                 <Link to="/cart">
                   <ShoppingCartOutlinedIcon />
+                  {/* <p>{getTotalQuantity() || 0}</p> */}
                 </Link>
               </div>
             </div>
