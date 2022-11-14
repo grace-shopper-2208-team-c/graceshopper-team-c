@@ -10,12 +10,12 @@ const orders = [
   {
     total: 20371.09,
     date: '2022-11-08',
-    status: 'complete',
+    status: 'complete'
   },
   {
     total: 60571.53,
     date: '2022-11-08',
-    status: 'complete',
+    status: 'complete'
   },
 ];
 

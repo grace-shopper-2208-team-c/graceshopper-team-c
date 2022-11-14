@@ -16,7 +16,10 @@ export const fetchCartByUserIdAsync = createAsyncThunk(
 //Added reducers
 const userCartSlice = createSlice({
   name: 'user_cart',
-  initialState: {},
+  initialState: {
+    order: {},
+    orderProducts: {}
+  },
   reducers: {
     addToCart: (state, action) => {
       const productInCart = state.cart.find((product) => product.id === action.payload.id);
@@ -41,7 +44,7 @@ const userCartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCartByUserIdAsync.fulfilled, (state, action) => {
-      return action.payload;
+      return action.payload; //returns orderId, $total, date, status, createdAt, updatedAt, and userId
     });
   },
 });
