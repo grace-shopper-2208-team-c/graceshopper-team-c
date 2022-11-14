@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from './productsSlice';
 import { NavLink } from 'react-router-dom';
+import { SortBy } from 'react-instantsearch-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -19,6 +20,9 @@ const Products = () => {
 
   return (
     <div className="products">
+
+      <button className="sort-by"></button>
+
       {products && products.length
         ? products.map((product) => (
             <div key={`Single Product: ${product.id}`}>
