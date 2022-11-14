@@ -4,7 +4,7 @@ const { db } = require('./server/db');
 const User = require('./server/db/models/User');
 const Product = require('./server/db/models/Product');
 const Order = require('./server/db/models/Order');
-const Orders_Product = require('./server/db/models/Orders_Product')
+const Orders_Product = require('./server/db/models/Orders_Product');
 
 const orders = [
   {
@@ -95,7 +95,7 @@ const users = [
     city: 'Fairfield',
     state: 'Idaho',
     zip: '17641',
-    phone: '+1 (991) 400-3821',
+    phone: '991-400-3821',
     username: 'nelda',
     email: 'neldacarney@musanpoly.com',
     password: 'default',
@@ -107,7 +107,7 @@ const users = [
     city: 'Carrizo',
     state: 'Federated States Of Micronesia',
     zip: '56270',
-    phone: '+1 (862) 580-2938',
+    phone: '862-580-2938',
     username: 'willie',
     email: 'williejennings@musanpoly.com',
     password: 'default',
@@ -119,7 +119,7 @@ const users = [
     city: 'Lisco',
     state: 'Indiana',
     zip: '28425',
-    phone: '+1 (997) 549-2497',
+    phone: '997-549-2497',
     email: 'jewelsparks@musanpoly.com',
     username: 'jewel',
     password: 'default',
@@ -131,7 +131,7 @@ const users = [
     city: 'Bennett',
     state: 'Oregon',
     zip: '53723',
-    phone: '+1 (855) 459-3653',
+    phone: '855-459-3653',
     username: 'cristina',
     email: 'cristinacontreras@musanpoly.com',
     password: 'default',
@@ -143,7 +143,7 @@ const users = [
     city: 'Ladera',
     state: 'North Carolina',
     zip: '38999',
-    phone: '+1 (854) 459-2726',
+    phone: '854-459-2726',
     username: 'evans',
     email: 'evanssmall@musanpoly.com',
     password: 'default',
@@ -155,7 +155,7 @@ const users = [
     city: 'Ogema',
     state: 'Delaware',
     zip: '29083',
-    phone: '+1 (852) 585-3198',
+    phone: '852-585-3198',
     username: 'barker',
     email: 'barkerbooker@musanpoly.com',
     password: 'default',
@@ -163,24 +163,26 @@ const users = [
   },
 ];
 
-const orders_products = [{
-  orderId: 1,
-  productId: 2,
-  quantity: 2, 
-  price: 8480.99,
-},
-{
-  orderId: 1,
-  productId: 3,
-  quantity: 1,
-  price: 3409.11,
-},
-{
-  orderId: 2,
-  productId: 6,
-  quantity: 9,
-  price: 6730.17,
-}];
+const orders_products = [
+  {
+    orderId: 1,
+    productId: 2,
+    quantity: 2,
+    price: 8480.99,
+  },
+  {
+    orderId: 1,
+    productId: 3,
+    quantity: 1,
+    price: 3409.11,
+  },
+  {
+    orderId: 2,
+    productId: 6,
+    quantity: 9,
+    price: 6730.17,
+  },
+];
 
 const seed = async () => {
   try {
@@ -204,7 +206,6 @@ const seed = async () => {
       })
     );
 
-    
     await Promise.all(
       orders_products.map((order_product) => {
         return Orders_Product.create(order_product);
