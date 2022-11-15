@@ -1,18 +1,36 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import CartItem from './cartItem2'
+import { fetchCartByUserIdAsync, fetchOrderProductsByOrderIdAsync } from './cartSlice';
 
 const Cart = () => {
-  //added cart const
-  // const cart = useSelector((state) => state.cart);
-  const cart = useSelector()
-
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const userId = useSelector((state) => state.auth.me.id);
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchCartByUserIdAsync(userId));
+    dispatch(fetchOrderProductsByOrderIdAsync())
+  })
+
+  const order = useSelector((state) => 
+  state.user_cart.order)
+
+  const orderProducts = useSelector((state) => state.user_cart.orderProducts)
+
+  const product = useSelector((state) => state.user_cart.product)
+
+  console.log('Product', product)
+
+  
 
   //added template to show products in cart
   return (
 <div className="cart__left">
   <div>
     <h3>My Cart</h3>
+    {/* <CartItem id={"1"}></CartItem> */}
+    
     {/* {cart?.map((product) => (
       <CartProduct
         key={product.id}

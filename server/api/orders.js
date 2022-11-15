@@ -38,7 +38,7 @@ router.get('/cart/:userId', async (req, res, next) => {
 //Get order products by order id
 router.get('/cartProducts/:orderId', async (req, res, next) => {
   try {
-    const orderId = req.params.userId;
+    const orderId = req.params.orderId;
     const orderProducts = await Orders_Product.findAll({
       where: {
         orderId: orderId
