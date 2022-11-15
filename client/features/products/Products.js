@@ -20,8 +20,6 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-
-
   const addToCart = (prod, price) => {
     if (isLoggedIn) {
       //logic for logged in user
@@ -37,7 +35,6 @@ const Products = () => {
         quantity: q,
         price: totalPrice
       }
-
 
       const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -63,6 +60,7 @@ const Products = () => {
 }
 
 return (
+
   <div className="products">
     {products && products.length
       ? products.map((product) => (
