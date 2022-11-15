@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import CartItem from './cartItem2'
+import CartItem from './loggedInCartItem'
 import { fetchCartByUserIdAsync, fetchOrderProductsByOrderIdAsync } from './cartSlice';
 import { allProducts, fetchProducts } from '../products/productsSlice';
 import Button from '@mui/material/Button';
@@ -8,57 +8,25 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 const Cart = () => {
-
-}
-
-
-const Cart = () => {
   const dispatch = useDispatch();
-  const products = useSelector(allProducts);
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
-  const guestCart = JSON.parse(localStorage.getItem('cart'));
-  const cart = useSelector((state) => state.cart);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const userId = isLoggedIn ? useSelector((state) => state.auth.me.id) : null
+
 
   if (isLoggedIn) { //logic for logged in user
-    const userId = useSelector((state) => state.auth.me.id);
-
-    useEffect(() => {
-      dispatch(fetchCartByUserIdAsync(userId));
-      dispatch(fetchOrderProductsByOrderIdAsync(cartOrderId)) //array of objects
-    }, [dispatch])
-
-    const order = useSelector((state) =>
-      state.user_cart.order)
-    const cartOrderId = order.id; //id for the carted order
-
-    const orderProducts = useSelector((state) => state.user_cart.orderProducts)
-
-    console.log("orderProducts is ", orderProducts)
-
-    const product = useSelector((state) => state.user_cart.product)
-
-    console.log('Product', product)
-
-
-
-    //added template to show products in cart
-    return (
-      <div className="cart__left">
-        <div>
-          <h3>My Cart</h3>
-
-        </div>
-      </div>
-    );
-
-  } else if (!isLoggedIn) {
+    <loggedCart id= {userId} ></loggedCart>
+  }
+  else if (!isLoggedIn) {
     // logic for guest cart
     // map the cart items from localstorage
     // get product info from the product ID
+    const products = useSelector(allProducts);
+    useEffect(() => {
+      dispatch(fetchProducts());
+    }, [dispatch]);
+
+    const guestCart = JSON.parse(localStorage.getItem('cart'));
+
     let subTotal = 0;
     const addTotal = (p) => {
       subTotal = subTotal + p;
@@ -125,7 +93,8 @@ const Cart = () => {
         </div>
       </div>
     );
-  }
+  }// end guest cart
+
 };
 
 export default Cart;
