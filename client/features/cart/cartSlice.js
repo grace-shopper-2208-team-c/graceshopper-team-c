@@ -13,6 +13,19 @@ export const fetchCartByUserIdAsync = createAsyncThunk(
   }
 );
 
+export const fetchProductsByOrderIdAsync = 
+createAsyncThunk(
+  'cartProducts',
+  async (orderId) => {
+    try {
+      const { data } = await axios.get(`/api/orders/cartProducts/${orderId}`);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 //Added reducers
 const userCartSlice = createSlice({
   name: 'user_cart',
@@ -44,8 +57,12 @@ const userCartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCartByUserIdAsync.fulfilled, (state, action) => {
-      return action.payload; //returns orderId, $total, date, status, createdAt, updatedAt, and userId
-    });
+      state.order = action.payload; //returns orderId, $total, date, status, createdAt, updatedAt, and userId
+    })
+    .addCase(fetchProductsByOrderIdAsync.fulfilled, (state, action) => {
+      state.orderProducts = action.payload //returns orderId, productId, qty, price, createdAt, updatedAt
+    }
+    );
   },
 });
 
