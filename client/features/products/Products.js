@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from './productsSlice';
 import { NavLink } from 'react-router-dom';
-import { SortBy } from 'react-instantsearch-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -21,7 +20,17 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  const sortAscending = () => {
+    const prices = products.product.price;
+    prices.sort((a, b) => a - b);   
+    // this.setState({ prices })
+  }
 
+  const sortDescending = () => {
+    const prices = products.product.price;
+    prices.sort((a, b) => a - b).reverse();
+    // this.setState({ prices })
+  }
 
   const addToCart = (prod, price) => {
     if (isLoggedIn) {
@@ -65,6 +74,13 @@ const Products = () => {
 
 return (
   <div className="products">
+    <div className="dropdown">
+    <label for="sort">Sort</label>
+      <select>
+        <option value="high-price" onClick={sortAscending}>High Price</option>
+        <option value="low-price" onClick={sortDescending}>Low Price</option>
+      </select>
+    </div>
     {products && products.length
       ? products.map((product) => (
         <div key={`Single Product: ${product.id}`}>
