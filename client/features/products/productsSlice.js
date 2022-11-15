@@ -24,7 +24,19 @@ export const removeProduct = createAsyncThunk('removeProduct', async () => {
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    sortAscending: (state, action) => {
+      const price = products.product.price;
+      price.sort((a, b) => a - b);
+      return action.payload;
+    },
+
+    sortDescending: (state, action) => {
+      const price = products.product.price;
+      price.sort((a, b) => a - b).reverse();
+      return action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       return action.payload;

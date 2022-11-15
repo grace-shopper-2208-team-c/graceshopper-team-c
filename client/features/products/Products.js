@@ -78,8 +78,8 @@ return (
     <label for="sort">Sort</label>
       <select>
         <option value="default" onClick={"/products/"}>Default</option>
-        <option value="high-price" onClick={sortAscending()}>High Price</option>
-        <option value="low-price" onClick={sortDescending()}>Low Price</option>
+        <option value="high-price" onClick={sortAscending}>High Price</option>
+        <option value="low-price" onClick={sortDescending}>Low Price</option>
       </select>
     </div>
     {products && products.length
