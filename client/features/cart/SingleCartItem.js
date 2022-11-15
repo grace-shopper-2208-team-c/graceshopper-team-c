@@ -1,6 +1,5 @@
 
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductByIdAsync, showSingleProduct } from '../products/singleProductSlice';
 
@@ -21,7 +20,6 @@ const SingleCartItem = ({ props }) => {
 
         </>
     )
-
 }
 
 export default SingleCartItem
