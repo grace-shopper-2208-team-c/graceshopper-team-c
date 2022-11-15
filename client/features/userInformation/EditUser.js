@@ -16,13 +16,13 @@ const EditUser = (props) => {
     dispatch(fetchSingleUser(user.id));
   }, []);
 
-  const [city, setCity] = useState('');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [state, setState] = useState('');
-  const [street_address, setStreet] = useState('');
-  const [zip, setZip] = useState('');
+  const [city, setCity] = useState(user.city);
+  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user.name);
+  const [phone, setPhone] = useState(user.phone);
+  const [state, setState] = useState(user.state);
+  const [street_address, setStreet] = useState(user.street_address);
+  const [zip, setZip] = useState(user.zip);
   const [id, setId] = useState(user.id);
 
   async function editUser() {
@@ -80,19 +80,22 @@ const EditUser = (props) => {
               <form onSubmit={editUser}>
                 <label>Name:</label>
                 <input
-                  value={name}
+                  id="name"
+                  name="name"
+                  type="text"
                   onChange={(evt) => setName(evt.target.value)}
-                  placeholder={user.name}
+                  value={name}
                   required
                 />
                 <br></br>
                 <br></br>
                 <label>Email:</label>
                 <input
-                  value={email}
-                  onChange={(evt) => setEmail(evt.target.value)}
-                  placeholder={user.email}
+                  id="email"
+                  name="email"
                   type="email"
+                  onChange={(evt) => setEmail(evt.target.value)}
+                  value={email}
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   required
                 />
@@ -100,45 +103,56 @@ const EditUser = (props) => {
                 <br></br>
                 <label>Phone:</label>
                 <input
-                  value={phone}
+                  id="phone"
+                  name="phone"
+                  type="tel"
                   onChange={(evt) => setPhone(evt.target.value)}
-                  placeholder={user.phone}
+                  value={phone}
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                   required
                 />
                 <br></br>
                 <br></br>
                 <label>Street Address:</label>
                 <input
-                  value={street_address}
+                  id="street_address"
+                  name="street_address"
+                  type="text"
                   onChange={(evt) => setStreet(evt.target.value)}
-                  placeholder={user.street_address}
+                  value={street_address}
                   required
                 />
                 <br></br>
                 <br></br>
                 <label>Zip Code:</label>
                 <input
-                  value={zip}
+                  id="zip"
+                  name="zip"
+                  type="number"
                   onChange={(evt) => setZip(evt.target.value)}
-                  placeholder={user.zip}
+                  value={zip}
                   required
                 />
                 <br></br>
                 <br></br>
                 <label>City:</label>
                 <input
-                  value={city}
+                  id="city"
+                  name="city"
+                  type="text"
                   onChange={(evt) => setCity(evt.target.value)}
-                  placeholder={user.city}
+                  value={city}
                   required
                 />
                 <br></br>
                 <br></br>
                 <label>State:</label>
                 <input
-                  value={state}
+                  id="state"
+                  name="state"
+                  type="text"
                   onChange={(evt) => setState(evt.target.value)}
-                  placeholder={user.state}
+                  value={state}
                   required
                 />
                 <br></br>
