@@ -9,69 +9,115 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector(allProducts);
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const userId = useSelector((state) => state.auth.me.id);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  return (
-    <div className="products">
-      {products && products.length
-        ? products.map((product) => (
-            <div key={`Single Product: ${product.id}`}>
-              <div className="product row">
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    minHeight: 400,
-                  }}
-                >
+
+
+  const addToCart = (prod, price) => {
+    if (isLoggedIn) {
+      //logic for logged in user
+
+    }
+    else if (!isLoggedIn) {
+      // logic for not logged in user
+      let q = 1
+      const totalPrice = price * q;
+
+      const p = {
+        productId: prod,
+        quantity: q,
+        price: totalPrice
+      }
+
+
+      const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      if (!existingCart[0]) {
+        existingCart.push(p)
+      }
+      else {
+        let itemExists = false;
+        for (let i = 0; i < existingCart.length; i++) {
+          if (p.productId == existingCart[i].productId) {
+            console.log('product exists')
+            existingCart[i].quantity += p.quantity
+            itemExists = true
+          }
+      }
+      if (!itemExists) {
+        existingCart.push(p)
+      }
+    }
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+
+  }
+}
+
+return (
+  <div className="products">
+    {products && products.length
+      ? products.map((product) => (
+        <div key={`Single Product: ${product.id}`}>
+          <div className="product row">
+            <Card
+              sx={{
+                maxWidth: 345,
+                minHeight: 400,
+              }}
+            >
+              <NavLink
+                to={`/products/${product.id}`}
+                key={`All Products: ${product.id}`}
+              >
+                <CardMedia
+                  component="img"
+                  height="290"
+                  image={product.image}
+                  alt="shoe picture"
+                />
+              </NavLink>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div" className="productTitle">
+                  {product.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Type: {product.category}
+                  <br />
+                  Price: ${product.price}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button
+                  variant="outlined"
+                  size="medium">
                   <NavLink
                     to={`/products/${product.id}`}
-                    key={`All Products: ${product.id}`}
+                    className="active"
                   >
-                    <CardMedia
-                      component="img"
-                      height="290"
-                      image={product.image}
-                      alt="shoe picture"
-                    />
+                    Product Details
                   </NavLink>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className="productTitle">
-                      {product.name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Type: {product.category}
-                      <br />
-                      Price: ${product.price}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button 
-                    variant="outlined"
-                    size="medium">
-                      <NavLink
-                        to={`/products/${product.id}`}
-                        className="active"
-                      >
-                        Product Details
-                      </NavLink>
-                    </Button>
-                    <Button 
-                    variant="outlined"
-                    size="medium">Add to cart</Button>
-                  </CardActions>
-                </Card>
-              </div>
-            </div>
-          ))
-        : null}
-    </div>
-  );
-};
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="medium"
+                  onClick={(e) => addToCart(product.id, product.price)}> Add to cart</Button>
+              </CardActions>
+            </Card>
+          </div>
+        </div>
+      ))
+      : null}
+  </div>
+);
+  };
 
 export default Products;
