@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userOrdersAll, fetchUserOrders } from './ordersSlice';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const OrderHistory = (props) => {
   const orders = useSelector(userOrdersAll);
   const { id } = props;
   const dispatch = useDispatch();
-  console.log(orders);
+  // console.log(orders, '***********************');
 
   useEffect(() => {
     dispatch(fetchUserOrders(id));
@@ -19,7 +20,7 @@ const OrderHistory = (props) => {
         orders.map((order) => (
           <div
             className="singleUserOrder"
-            key={`Single order of User: ${order.id}`}
+            key={`Single order of User: ${uuidv4()}`}
           >
             <div
               style={{
