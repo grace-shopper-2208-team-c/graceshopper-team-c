@@ -27,6 +27,7 @@ const SortBy = () => {
     <div className="dropdown">
       <label for="sort">Sort</label>
       <select>
+      <option value="high-price" onClick={sortAscending}>Default</option>
         <option value="high-price" onClick={sortAscending}>High Price</option>
         <option value="low-price" onClick={sortDescending}>Low Price</option>
       </select>

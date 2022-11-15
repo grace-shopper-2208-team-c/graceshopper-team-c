@@ -20,15 +20,15 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const sortAscending = () => {
-    const prices = products.product.price;
-    prices.sort((a, b) => a - b);   
+  function sortAscending() {
+    const price = products.product.price;
+    price.sort((a, b) => a - b);   
     // this.setState({ prices })
   }
 
-  const sortDescending = () => {
-    const prices = products.product.price;
-    prices.sort((a, b) => a - b).reverse();
+  function sortDescending() {
+    const price = products.product.price;
+    price.sort((a, b) => a - b).reverse();
     // this.setState({ prices })
   }
 
@@ -77,8 +77,9 @@ return (
     <div className="dropdown">
     <label for="sort">Sort</label>
       <select>
-        <option value="high-price" onClick={sortAscending}>High Price</option>
-        <option value="low-price" onClick={sortDescending}>Low Price</option>
+        <option value="default" onClick={"/products/"}>Default</option>
+        <option value="high-price" onClick={sortAscending()}>High Price</option>
+        <option value="low-price" onClick={sortDescending()}>Low Price</option>
       </select>
     </div>
     {products && products.length
