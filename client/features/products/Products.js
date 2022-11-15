@@ -20,6 +20,18 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  function sortAscending() {
+    const price = products.product.price;
+    price.sort((a, b) => a - b);   
+    // this.setState({ prices })
+  }
+
+  function sortDescending() {
+    const price = products.product.price;
+    price.sort((a, b) => a - b).reverse();
+    // this.setState({ prices })
+  }
+
   const addToCart = (prod, price) => {
     if (isLoggedIn) {
       //logic for logged in user
@@ -62,6 +74,14 @@ const Products = () => {
 return (
 
   <div className="products">
+    <div className="dropdown">
+    <label for="sort">Sort</label>
+      <select>
+        <option value="default" onClick={"/products/"}>Default</option>
+        <option value="high-price" onClick={sortAscending}>High Price</option>
+        <option value="low-price" onClick={sortDescending}>Low Price</option>
+      </select>
+    </div>
     {products && products.length
       ? products.map((product) => (
         <div key={`Single Product: ${product.id}`}>
