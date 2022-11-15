@@ -8,38 +8,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 const Cart = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const userId = useSelector((state) => state.auth.me.id);
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchCartByUserIdAsync(userId));
-    dispatch(fetchOrderProductsByOrderIdAsync(cartOrderId)) //array of objects
-  }, [dispatch])
-
-  const order = useSelector((state) => 
-  state.user_cart.order)
-  const cartOrderId = order.id; //id for the carted order
-
-  const orderProducts = useSelector((state) => state.user_cart.orderProducts)
-
-  console.log("orderProducts is ", orderProducts)
-
-  const product = useSelector((state) => state.user_cart.product)
-
-  console.log('Product', product)
-
-  
-
-  //added template to show products in cart
-  return (
-<div className="cart__left">
-  <div>
-    <h3>My Cart</h3>
-    
-  </div>
-</div>
-  );
+}
 
 
 const Cart = () => {
@@ -53,9 +23,38 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
-  if (isLoggedIn) {
-    //logic for logged in user
-    return <></>;
+  if (isLoggedIn) { //logic for logged in user
+    const userId = useSelector((state) => state.auth.me.id);
+
+    useEffect(() => {
+      dispatch(fetchCartByUserIdAsync(userId));
+      dispatch(fetchOrderProductsByOrderIdAsync(cartOrderId)) //array of objects
+    }, [dispatch])
+
+    const order = useSelector((state) =>
+      state.user_cart.order)
+    const cartOrderId = order.id; //id for the carted order
+
+    const orderProducts = useSelector((state) => state.user_cart.orderProducts)
+
+    console.log("orderProducts is ", orderProducts)
+
+    const product = useSelector((state) => state.user_cart.product)
+
+    console.log('Product', product)
+
+
+
+    //added template to show products in cart
+    return (
+      <div className="cart__left">
+        <div>
+          <h3>My Cart</h3>
+
+        </div>
+      </div>
+    );
+
   } else if (!isLoggedIn) {
     // logic for guest cart
     // map the cart items from localstorage
@@ -128,23 +127,5 @@ const Cart = () => {
     );
   }
 };
-
-// From previous cart - save for the loggedin cart logic
-//   return (
-// <div className="cart__left">
-//   <div>
-//     <h3>My Cart</h3>
-//     {/* {cart?.map((product) => (
-//       <CartProduct
-//         key={product.id}
-//         id={product.id}
-//         image={product.image}
-//         price={item.price}
-//         quantity={product.quantity}
-//       />
-//     ))} */}
-//   </div>
-// </div>
-//   );
 
 export default Cart;

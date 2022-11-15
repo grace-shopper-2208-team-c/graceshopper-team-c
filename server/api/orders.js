@@ -1,7 +1,3 @@
-const router = require('express').Router();
-const {
-  models: { Order, Orders_Product },
-} = require('../db');
 const router = require('express').Router()
 const { models: { Order, Orders_Product } } = require('../db')
 
