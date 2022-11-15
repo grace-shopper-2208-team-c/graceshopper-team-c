@@ -10,13 +10,16 @@ const Cart = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchCartByUserIdAsync(userId));
-    dispatch(fetchOrderProductsByOrderIdAsync())
-  })
+    dispatch(fetchOrderProductsByOrderIdAsync(cartOrderId)) //array of objects
+  }, [dispatch])
 
   const order = useSelector((state) => 
   state.user_cart.order)
+  const cartOrderId = order.id; //id for the carted order
 
   const orderProducts = useSelector((state) => state.user_cart.orderProducts)
+
+  console.log("orderProducts is ", orderProducts)
 
   const product = useSelector((state) => state.user_cart.product)
 
