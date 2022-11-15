@@ -48,7 +48,6 @@ const Products = () => {
         price: totalPrice
       }
 
-
       const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
 
       if (!existingCart[0]) {
@@ -73,6 +72,7 @@ const Products = () => {
 }
 
 return (
+
   <div className="products">
     <div className="dropdown">
     <label for="sort">Sort</label>
