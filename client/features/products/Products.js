@@ -20,9 +20,9 @@ const Products = () => {
 
   return (
     <div className="products">
-
-      <button className="sort-by"></button>
-
+      <div className="sortbar">
+        <button className="sort-by"></button>
+      </div>
       {products && products.length
         ? products.map((product) => (
             <div key={`Single Product: ${product.id}`}>
