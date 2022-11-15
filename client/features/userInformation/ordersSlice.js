@@ -7,7 +7,6 @@ export const fetchUserOrders = createAsyncThunk(
   'fetchUserOrders',
   async (userId) => {
     const { data } = await axios.get(`/api/orders/userorder/${userId}`);
-    console.log(userId);
     return data;
   }
 );
