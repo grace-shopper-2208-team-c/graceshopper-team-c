@@ -1,12 +1,18 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { allProducts, fetchProducts } from '../products/productsSlice'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import SingleCartItem from './SingleCartItem'
 
 
 const Cart = () => {
+
+  const dispatch = useDispatch();
+  const products = useSelector(allProducts);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   const guestCart = JSON.parse(localStorage.getItem('cart'));
   const cart = useSelector((state) => state.cart);
@@ -28,10 +34,29 @@ const Cart = () => {
       subTotal = subTotal + p
     }
 
-   let ordersMap = guestCart.map((guestCartItem) => (
-      <div className='guestCartItem'>
-      {addTotal(guestCartItem.price)}
 
+
+    const ordersMap = guestCart.map((guestCartItem) => {
+      console.log(guestCartItem.productId)
+
+      let singleProduct = (val) => {
+        console.log(val)
+        for (let i = 0; i < products.length; i++){
+          if (products[i].id == guestCartItem.productId){
+            if (val === 'name'){
+              return products[i].name
+            }
+            if (val === 'image'){
+              return products[i].image
+            }
+          }
+        }
+      }
+
+
+      return (
+      <div className='guestCartItem'>
+      {addTotal(guestCartItem.price * guestCartItem.quantity)}
         <Box
     sx={{
       display: 'flex',
@@ -46,12 +71,15 @@ const Cart = () => {
     }}
   >
     <Paper elevation={3}>
-      <SingleCartItem props={guestCartItem.productId} /> 
+      <img src={singleProduct('image')}></img>
+        <p>{singleProduct('name')}</p>
+        <p>Quantity: {guestCartItem.quantity}</p>
+        <p>Price: ${guestCartItem.price}</p>
       </Paper>
   </Box>
   </div>
-    ));
-  
+  )});
+
     return (
       <div className="guestCartHolder">
         <h1 align="center">Cart</h1>
