@@ -8,7 +8,7 @@ const OrderHistory = (props) => {
   const orders = useSelector(userOrdersAll);
   const { id } = props;
   const dispatch = useDispatch();
-  // console.log(orders, '***********************');
+  console.log(orders, '***********************');
 
   useEffect(() => {
     dispatch(fetchUserOrders(id));

@@ -71,6 +71,18 @@ router.delete('/cartProducts/:orderid/:productid', async (req, res, next) => {
 });
 
 
+router.get('/admin/orders', async (req, res, next) => {
+  try {
+    const completeOrders = await Order.findAll({
+      where: {
+        status: 'complete',
+      },
+    });
+    res.json(completeOrders);
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.put('/:id', async (req, res, next) => {
   try {

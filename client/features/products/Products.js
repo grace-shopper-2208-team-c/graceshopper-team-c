@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from './productsSlice';
 import { NavLink } from 'react-router-dom';
@@ -19,17 +19,21 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  let sortedArray = [...products]; //products is reference to state. state cannot be altered directly, so we deepcopy into new mutable object rather than dispatch actions to mutate. sortedArray can be sorted in place below
+
   function sortAscending() {
-    const price = products.product.price;
-    price.sort((a, b) => a - b);
-    // this.setState({ prices })
-  }
+    sortedArray.sort((a, b) => a.price - b.price);
+    console.log("sorted ascending")
+    console.log(sortedArray)
+    return sortedArray;
+  };
 
   function sortDescending() {
-    const price = products.product.price;
-    price.sort((a, b) => a - b).reverse();
-    // this.setState({ prices })
-  }
+    sortedArray.sort((a, b) => a.price - b.price).reverse();
+    console.log("sorted descending")
+    console.log(sortedArray)
+    return sortedArray;
+  };
 
   const addToCart = (prod, price) => {
     if (isLoggedIn) {
@@ -66,24 +70,38 @@ const Products = () => {
     }
   };
 
+  const [userSelection, setUserSelection] = useState('High Price')
+
+  //Sort dropdown menu event handler
+  const handleSelection = (evt) => {
+    const userSelection = evt.target.value;
+    setUserSelection(userSelection)
+  }
+
+
+  //Use state to determine sorting
+  if (userSelection == 'High Price') {
+    sortDescending()
+  } else if (userSelection == 'Low Price') {
+    sortAscending()
+  }
+
   return (
+
     <div className="products">
+
       <div className="dropdown">
         <label htmlFor="sort">Sort</label>
-        <select>
-          {/* <option value="default" onClick={'/products/'}>
-            Default
-          </option> */}
-          <option value="high-price" onClick={sortAscending}>
-            High Price
-          </option>
-          <option value="low-price" onClick={sortDescending}>
-            Low Price
-          </option>
+        <select onChange={handleSelection}>
+          {/* <option value={sortedArray}>Default</option> */}
+          <option value={sortAscending}>High Price</option>
+          <option value={sortDescending}>Low Price</option>
         </select>
       </div>
-      {products && products.length
-        ? products.map((product) => (
+
+      <div className="shoelist">
+        {sortedArray && sortedArray.length
+          ? sortedArray.map((product) => (
             <div key={`Single Product: ${product.id}`}>
               <div className="product row">
                 <Card
@@ -104,12 +122,7 @@ const Products = () => {
                     />
                   </NavLink>
                   <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      className="productTitle"
-                    >
+                    <Typography gutterBottom variant="h5" component="div" className="productTitle">
                       {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -119,7 +132,9 @@ const Products = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button variant="outlined" size="medium">
+                    <Button
+                      variant="outlined"
+                      size="medium">
                       <NavLink
                         to={`/products/${product.id}`}
                         className="active"
@@ -130,19 +145,16 @@ const Products = () => {
                     <Button
                       variant="outlined"
                       size="medium"
-                      onClick={(e) => addToCart(product.id, product.price)}
-                    >
-                      {' '}
-                      Add to cart
-                    </Button>
+                      onClick={(e) => addToCart(product.id, product.price)}> Add to cart</Button>
                   </CardActions>
                 </Card>
               </div>
             </div>
           ))
-        : null}
+          : null}
+      </div>
+
     </div>
-  );
-};
+  )};
 
 export default Products;

@@ -48,7 +48,13 @@ const AdminUsers = () => {
               <TableCell scope="header">Name</TableCell>
               <TableCell scope="header">Username</TableCell>
               <TableCell scope="header">Phone Number</TableCell>
-              <TableCell scope="header"></TableCell>
+              <TableCell
+                scope="header"
+                style={{ display: 'flex', justifyContent: 'space-evenly' }}
+              >
+                {' '}
+                User Information
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody
@@ -69,14 +75,17 @@ const AdminUsers = () => {
                 <TableCell scope="row">{user.name}</TableCell>
                 <TableCell scope="row">{user.username}</TableCell>
                 <TableCell scope="row">{user.phone}</TableCell>
-                <TableCell scope="row">
+                <TableCell
+                  scope="row"
+                  style={{ display: 'flex', justifyContent: 'space-evenly' }}
+                >
                   <Button
                     sx={{ width: 100 }}
                     variant="outlined"
                     color="secondary"
                     target="_blank"
                   >
-                    Edit
+                    Details
                   </Button>
                 </TableCell>
               </TableRow>
