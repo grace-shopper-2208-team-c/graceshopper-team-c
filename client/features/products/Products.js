@@ -19,7 +19,7 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  let sortedArray = {...products};
+  let sortedArray = [...products];
 
   function sortAscending() {
     sortedArray.sort((a, b) => a.price - b.price);
