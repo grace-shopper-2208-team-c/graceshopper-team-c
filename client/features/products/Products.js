@@ -19,10 +19,9 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  let sortedArray = [...products];
+  let sortedArray = [...products]; //products is reference to state. state cannot be altered directly, so we deepcopy into new mutable object rather than dispatch actions to mutate. sortedArray can be sorted in place below
 
   function sortAscending() {
-    console.log(sortedArray)
     sortedArray.sort((a, b) => a.price - b.price);
     console.log("sorted ascending")
     console.log(sortedArray)
@@ -30,7 +29,6 @@ const Products = () => {
   };
 
   function sortDescending() {
-    console.log(sortedArray)
     sortedArray.sort((a, b) => a.price - b.price).reverse();
     console.log("sorted descending")
     console.log(sortedArray)
@@ -88,13 +86,13 @@ return (
     <div className="dropdown">
       <label htmlFor="sort">Sort</label>
       <select onChange = {handleSelection}>
-        <option value={sortedArray}>Default</option>
+        {/* <option value={sortedArray}>Default</option> */}
         <option value={sortAscending}>High Price</option>
         <option value={sortDescending}>Low Price</option>
       </select>
     </div>
-    {products && products.length
-      ? products.map((product) => (
+    {sortedArray && sortedArray.length
+      ? sortedArray.map((product) => (
         <div key={`Single Product: ${product.id}`}>
           <div className="product row">
             <Card
