@@ -7,6 +7,7 @@ import userCartSlice from '../features/cart/cartSlice';
 import singleUserSlice from '../features/userInformation/settingsSlice';
 import userOrdersSlice from '../features/userInformation/ordersSlice';
 import usersSlice from '../features/admin/usersSlice';
+import ordersSlice from '../features/admin/ordersSlice';
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     singleUser: singleUserSlice,
     userOrders: userOrdersSlice,
     allUsers: usersSlice,
+    completeOrders: ordersSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
@@ -29,3 +31,4 @@ export * from '../features/cart/cartSlice';
 export * from '../features/userInformation/settingsSlice';
 export * from '../features/userInformation/ordersSlice';
 export * from '../features/admin/usersSlice';
+export * from '../features/admin/ordersSlice';

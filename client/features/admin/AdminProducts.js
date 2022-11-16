@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from '../products/productsSlice';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -18,7 +20,6 @@ import {
 const AdminProducts = () => {
   const dispatch = useDispatch();
   const products = useSelector(allProducts);
-  console.log(products);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -48,7 +49,12 @@ const AdminProducts = () => {
               <TableCell scope="header">Name</TableCell>
               <TableCell scope="header">Price (USD)</TableCell>
               <TableCell scope="header">Quantity</TableCell>
-              <TableCell scope="header"></TableCell>
+              <TableCell
+                scope="header"
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                Edit / Remove
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody
@@ -68,15 +74,16 @@ const AdminProducts = () => {
                 <TableCell scope="row">{product.name}</TableCell>
                 <TableCell scope="row">${product.price}</TableCell>
                 <TableCell scope="row">{product.quantity}</TableCell>
-                <TableCell scope="row">
-                  <Button
-                    sx={{ width: 100 }}
-                    variant="outlined"
-                    color="secondary"
-                    target="_blank"
-                  >
-                    Edit
-                  </Button>
+                <TableCell
+                  scope="row"
+                  style={{ display: 'flex', justifyContent: 'space-evenly' }}
+                >
+                  <EditIcon
+                    sx={{ '&:hover': { color: 'darkgrey', cursor: 'pointer' } }}
+                  ></EditIcon>
+                  <DeleteIcon
+                    sx={{ '&:hover': { color: 'darkgrey', cursor: 'pointer' } }}
+                  ></DeleteIcon>
                 </TableCell>
               </TableRow>
             ))}
