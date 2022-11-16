@@ -1,5 +1,7 @@
-const router = require('express').Router()
-const { models: { Order, Orders_Product } } = require('../db')
+const router = require('express').Router();
+const {
+  models: { Order, Orders_Product },
+} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -26,14 +28,14 @@ router.get('/cart/:userId', async (req, res, next) => {
     const userCart = await Order.findOne({
       where: {
         userId: req.params.userId,
-        status: "cart"
-      }
+        status: 'cart',
+      },
     });
     res.json(userCart);
   } catch (err) {
     next(err);
   }
-})
+});
 
 //Get order products by order id
 router.get('/cartProducts/:orderId', async (req, res, next) => {
@@ -41,10 +43,25 @@ router.get('/cartProducts/:orderId', async (req, res, next) => {
     const orderId = req.params.orderId;
     const orderProducts = await Orders_Product.findAll({
       where: {
-        orderId: orderId
-      }
+        orderId: orderId,
+      },
     });
-    res.json(orderProducts)
+    res.json(orderProducts);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//Get order products by order id
+router.get('/cartProducts/:userId', async (req, res, next) => {
+  try {
+    // const orderId = req.params.userId;
+    const orderProducts = await Orders_Product.findAll({
+      where: {
+        orderId: req.params.userId,
+      },
+    });
+    res.json(orderProducts);
   } catch (err) {
     next(err);
   }
@@ -65,16 +82,15 @@ router.get('/cartProducts/:userId', async (req, res, next) => {
   }
 });
 
-//Get order products by order id
-router.get('/cartProducts/:userId', async (req, res, next) => {
+// user settings router
+router.get('/userorder/:userId', async (req, res, next) => {
   try {
-    // const orderId = req.params.userId;
-    const orderProducts = await Orders_Product.findAll({
+    const userOrders = await Order.findAll({
       where: {
-        orderId: req.params.userId,
+        userId: req.params.userId,
       },
     });
-    res.json(orderProducts);
+    res.json(userOrders);
   } catch (err) {
     next(err);
   }

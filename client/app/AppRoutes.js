@@ -21,7 +21,6 @@ import AdminOrders from '../features/admin/AdminOrders';
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const isAdmin = useSelector((state) => !!state.auth.me.isAdmin);
-  console.log('9999999999999999999', isAdmin);
   const dispatch = useDispatch();
 
   useEffect(() => {
