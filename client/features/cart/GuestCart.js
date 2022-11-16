@@ -5,6 +5,7 @@ import { allProducts, fetchProducts } from '../products/productsSlice'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const GuestCart = () => {
 
@@ -23,21 +24,36 @@ const GuestCart = () => {
         subTotal = subTotal + p
     }
 
-    let incQuantity = (id) => {
+    const incQuantity = (id) => {
         for (let i = 0; i < cart.length; i++) {
             if (id == cart[i].productId) {
-                cart[i].quantity++
+                if (cart[i].quantity < 10){
+                    cart[i].quantity++
+                }
             }
         }
         setCart([...cart]);
-        console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
     const decQuantity = (id) => {
         for (let i = 0; i < cart.length; i++) {
             if (id == cart[i].productId) {
-                cart[i].quantity--
+                if (cart[i].quantity <= 1){
+                    return
+                } else {
+                    cart[i].quantity--
+                }            
+            }
+        }
+        setCart([...cart]);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    const deleteItem= (id) => {
+        for (let i = 0; i < cart.length; i++) {
+            if (id == cart[i].productId) {
+                cart.splice(i, 1)
             }
         }
         setCart([...cart]);
@@ -90,8 +106,8 @@ const GuestCart = () => {
                     >
                         <Paper elevation={3}>
                             <img src={singleProduct('image')} className="cartImage"></img>
-                            <h3>{singleProduct('name')}</h3>
-                            <p>Quantity: <button onClick={() => incQuantity(CartItem.productId)}>+</button> {CartItem.quantity} <button onClick={() => decQuantity(CartItem.productId)}>-</button></p>
+                            <h3>{singleProduct('name')}<DeleteForeverIcon onClick={() => deleteItem(CartItem.productId)} /></h3>
+                            <p>Quantity: <button onClick={() => decQuantity(CartItem.productId)}>-</button> {CartItem.quantity} <button onClick={() => incQuantity(CartItem.productId)}>+</button></p>
                             <p>Price: ${CartItem.price}</p>
                         </Paper>
                     </Box>
