@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showAllUsers, fetchAllUsers } from './usersSlice';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Paper,
@@ -25,6 +27,7 @@ const AdminUsers = () => {
     <div
       style={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -81,6 +84,16 @@ const AdminUsers = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <br></br>
+      <Link to="/admin">
+        <KeyboardReturnIcon
+          style={{
+            fontSize: 50,
+            textDecoration: 'none',
+            color: 'black',
+          }}
+        />
+      </Link>
     </div>
   );
 };
