@@ -138,6 +138,17 @@ height: 64px;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+.cartImage {
+  height: 150px;
+  width: 175px;
+  float: left;
+  margin-right: 40px;
+}
+
+.guestCartHolder {
+  background-color:rgb(248, 245, 245);
+  padding-top: 15px;
+}
 .dropdown {
   position: relative;
   display: inline-block;
