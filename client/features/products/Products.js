@@ -99,7 +99,7 @@ const Products = () => {
         </select>
       </div>
 
-      <div>
+      <div className="shoelist">
         {sortedArray && sortedArray.length
           ? sortedArray.map((product) => (
             <div key={`Single Product: ${product.id}`}>
