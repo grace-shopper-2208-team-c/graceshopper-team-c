@@ -95,7 +95,7 @@ const LoggedCart = () => {
                         <Paper elevation={3}>
                             <img src={singleProduct('image')} className="cartImage"></img>
                             <h3>{singleProduct('name')}<DeleteForeverIcon onClick={() => deleteItem(CartItem.productId)} /></h3>
-                            <p>Quantity: <button onClick={() => CartItem.quantity--}>-</button> {CartItem.quantity} <button onClick={() => cartItem.quantity++)}>+</button></p>
+                            <p>Quantity: <button onClick={() => CartItem.quantity--}>-</button> {CartItem.quantity} <button onClick={() => cartItem.quantity--}>+</button></p>
                             <p>Price: ${CartItem.price}</p>
                         </Paper>
                     </Box>
