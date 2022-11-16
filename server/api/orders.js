@@ -67,6 +67,8 @@ router.get('/cartProducts/:userId', async (req, res, next) => {
   }
 });
 
+<<<<<<< HEAD
+=======
 //Get order products by order id
 router.get('/cartProducts/:userId', async (req, res, next) => {
   try {
@@ -95,6 +97,7 @@ router.get('/userorder/:userId', async (req, res, next) => {
     next(err);
   }
 });
+>>>>>>> 7106695d1ee81c2d32a54b1b090f2d7223588f0a
 
 router.put('/:id', async (req, res, next) => {
   try {
