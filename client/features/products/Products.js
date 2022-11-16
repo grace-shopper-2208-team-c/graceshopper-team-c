@@ -19,15 +19,23 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  let sortedArray = {...products};
+  let sortedArray = [...products];
+
+  console.log(sortedArray)
 
   function sortAscending() {
+    console.log(sortedArray)
     sortedArray.sort((a, b) => a.price - b.price);
+    console.log("sorted ascending")
+    console.log(sortedArray)
     return sortedArray;
   };
 
   function sortDescending() {
+    console.log(sortedArray)
     sortedArray.sort((a, b) => a.price - b.price).reverse();
+    console.log("sorted descending")
+    console.log(sortedArray)
     return sortedArray;
   };
 
@@ -66,12 +74,22 @@ const Products = () => {
     }
   };
 
+  //Sort dropdown menu event handler
+  const handleSelection = (evt) => {
+    const userSelection = evt.target.value;
+    if(userSelection == "High Price"){
+      sortAscending()
+    } else if(userSelection == "Low Price"){
+      sortDescending()
+    }
+  }
+
 return (
 
   <div className="products">
     <div className="dropdown">
       <label htmlFor="sort">Sort</label>
-      <select>
+      <select onChange = {handleSelection}>
         <option value={sortedArray}>Default</option>
         <option value={sortAscending}>High Price</option>
         <option value={sortDescending}>Low Price</option>
