@@ -22,6 +22,8 @@ const loggedCart = () => {
 
     console.log("orderProducts is ", orderProducts)
 
+    //Tim, just need help over here to map over "orderProducts". Orderproducts is an array of objects, where the objects are the orders products. 
+
     return (
         <div className="cart__left">
             <div>
