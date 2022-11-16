@@ -41,9 +41,9 @@ const Navbar = () => {
               </div>
               <div className="righttopnav">
                 <Link to="/home">Home</Link>
-                <button type="button" onClick={logoutAndRedirectHome}>
+                <Link onClick={logoutAndRedirectHome}>
                   Logout
-                </button>
+                </Link>
                 <Link to="/admin">
                   <AdminPanelSettingsIcon />
                 </Link>
@@ -65,9 +65,9 @@ const Navbar = () => {
               </div>
               <div className="righttopnav">
                 <Link to="/home">Home</Link>
-                <button type="button" onClick={logoutAndRedirectHome}>
+                <Link onClick={logoutAndRedirectHome}>
                   Logout
-                </button>
+                </Link>
                 <Link to="/settings">
                   <AccountCircleIcon />
                 </Link>

@@ -1,34 +1,117 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCartByUserIdAsync, fetchOrderProductsByOrderIdAsync } from './cartSlice';
+import { fetchCartByUserIdAsync, fetchOrderProductsByOrderIdAsync, CartByUserId, OrderProducts} from './cartSlice';
+import { Link } from 'react-router-dom';
+import { allProducts, fetchProducts } from '../products/productsSlice'
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
 
-const loggedCart = () => {
+const LoggedCart = () => {
+
+    const products = useSelector(allProducts);
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]);
+
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.me.id);
 
     useEffect(() => {
-        dispatch(fetchCartByUserIdAsync(userId));
-        dispatch(fetchOrderProductsByOrderIdAsync(cartOrderId)) //array of objects
+        dispatch(fetchCartByUserIdAsync(userId))
     }, [dispatch])
+    const cartOrderId = useSelector(CartByUserId);
 
-    const order = useSelector((state) =>
-        state.user_cart.order)
-    const cartOrderId = order.id; //id for the carted order
+    const orderProducts = useSelector(OrderProducts);
+    let cartProducts = orderProducts
+    useEffect(() => {
+        dispatch(fetchOrderProductsByOrderIdAsync(userId)) //array of objects
+    }, [dispatch] )
 
-    const products = [];
-    for(product of orderProducts){}
+    let subTotal = 0;
+    const addTotal = (p) => {
+        subTotal = subTotal + p
+    }
 
-    const orderProducts = useSelector((state) => state.user_cart.orderProducts)
+    if (Array.isArray(orderProducts)){
+    const ordersMap = orderProducts.map((CartItem) => {
+        // check to see if there is a local storage cart. if not, return message letting user know cart is empty
+        if (orderProducts == []) {
+            return (
+                <h3 style={{ marginLeft: "10px" }}>Shopping cart is empty.</h3>
+            )
+        }
+        else {
 
-    console.log("orderProducts is ", orderProducts)
+            // Function to take the guest cart item's product id and find the actual product for display information
+            let singleProduct = (val) => {
+                for (let i = 0; i < products.length; i++) {
+                    if (products[i].id == CartItem.productId) {
+                        if (val === 'name') {
+                            return products[i].name
+                        }
+                        if (val === 'image') {
+                            return products[i].image
+                        }
+                    }
+                }
+            }
 
+            return (
+                <div className='guestCartItem'>
+                    {/* Get the subtotal */}
+                    {addTotal(CartItem.price * CartItem.quantity)}
+
+                    {/* Each individual cart item */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            justifyContent: "center",
+                            alignItems: "center",
+                            '& > :not(style)': {
+                                m: 1,
+                                width: '95%',
+                                padding: 3,
+                            },
+                        }}
+                    >
+                        <Paper elevation={3}>
+                            <img src={singleProduct('image')} className="cartImage"></img>
+                            <h3>{singleProduct('name')}<DeleteForeverIcon onClick={() => deleteItem(CartItem.productId)} /></h3>
+                            <p>Quantity: <button onClick={() => decQuantity(CartItem.productId)}>-</button> {CartItem.quantity} <button onClick={() => incQuantity(CartItem.productId)}>+</button></p>
+                            <p>Price: ${CartItem.price}</p>
+                        </Paper>
+                    </Box>
+                </div>
+
+            )
+        }
+    });
+    
     return (
-        <div className="cart__left">
-            <div>
-                <h3>My Cart</h3>
-
+        <div className="loggedinCartHolder">
+            <h1 align="center">Cart</h1>
+            {ordersMap}
+            <div className="guestCartButtons" align="center">
+                <h2 style={{ marginLeft: "10px" }}>Subtotal: ${subTotal.toFixed(2)}
+                    <Button
+                        variant="outlined"
+                        size="medium"
+                        sx={{ m: 2 }}
+                    >Checkout</Button>
+                    <Link to="/products"><Button
+                        variant="outlined"
+                        size="medium"
+                    >Keep Shopping</Button></Link>
+                </h2>
             </div>
         </div>
     );
-
+    }
 }
+
+
+export default LoggedCart

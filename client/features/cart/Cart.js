@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector} from 'react-redux';
 // add your logged in user cart here
 import GuestCart from './GuestCart';
-import loggedCart from './loggedCart';
+import LoggedCart from './LoggedCart';
 
 const Cart = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -10,7 +10,7 @@ const Cart = () => {
   if (isLoggedIn) {
     //return logged in user cart below
     return (
-      <loggedCart></loggedCart>
+      <LoggedCart />
     )
   }
   else if (!isLoggedIn) {
