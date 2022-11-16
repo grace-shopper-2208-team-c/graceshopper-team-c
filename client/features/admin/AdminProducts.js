@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from '../products/productsSlice';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Paper,
@@ -26,6 +28,7 @@ const AdminProducts = () => {
     <div
       style={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -80,6 +83,16 @@ const AdminProducts = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <br></br>
+      <Link to="/admin">
+        <KeyboardReturnIcon
+          style={{
+            fontSize: 50,
+            textDecoration: 'none',
+            color: 'black',
+          }}
+        />
+      </Link>
     </div>
   );
 };
