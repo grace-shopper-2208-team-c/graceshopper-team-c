@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from './productsSlice';
 import { NavLink } from 'react-router-dom';
@@ -70,81 +70,87 @@ const Products = () => {
     }
   };
 
+  const [userSelection, setUserSelection] = useState('High Price')
+
   //Sort dropdown menu event handler
   const handleSelection = (evt) => {
     const userSelection = evt.target.value;
-    if(userSelection == "High Price"){
-      sortAscending()
-    } else if(userSelection == "Low Price"){
-      sortDescending()
-    }
+    setUserSelection(userSelection)
   }
 
-return (
 
-  <div className="products">
-    <div className="dropdown">
-      <label htmlFor="sort">Sort</label>
-      <select onChange = {handleSelection}>
-        {/* <option value={sortedArray}>Default</option> */}
-        <option value={sortAscending}>High Price</option>
-        <option value={sortDescending}>Low Price</option>
-      </select>
-    </div>
-    {sortedArray && sortedArray.length
-      ? sortedArray.map((product) => (
-        <div key={`Single Product: ${product.id}`}>
-          <div className="product row">
-            <Card
-              sx={{
-                maxWidth: 345,
-                minHeight: 400,
-              }}
-            >
-              <NavLink
-                to={`/products/${product.id}`}
-                key={`All Products: ${product.id}`}
+  //Use state to determine sorting
+  if (userSelection == 'High Price'){
+    sortDescending()
+  } else if (userSelection == 'Low Price'){
+    sortAscending()
+  }
+
+  return (
+
+    <div className="products">
+      <div className="dropdown">
+        <label htmlFor="sort">Sort</label>
+        <select onChange={handleSelection}>
+          {/* <option value={sortedArray}>Default</option> */}
+          <option value={sortAscending}>High Price</option>
+          <option value={sortDescending}>Low Price</option>
+        </select>
+      </div>
+      {sortedArray && sortedArray.length
+        ? sortedArray.map((product) => (
+          <div key={`Single Product: ${product.id}`}>
+            <div className="product row">
+              <Card
+                sx={{
+                  maxWidth: 345,
+                  minHeight: 400,
+                }}
               >
-                <CardMedia
-                  component="img"
-                  height="290"
-                  image={product.image}
-                  alt="shoe picture"
-                />
-              </NavLink>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div" className="productTitle">
-                  {product.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Type: {product.category}
-                  <br />
-                  Price: ${product.price}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="outlined"
-                  size="medium">
-                  <NavLink
-                    to={`/products/${product.id}`}
-                    className="active"
-                  >
-                    Product Details
-                  </NavLink>
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="medium"
-                  onClick={(e) => addToCart(product.id, product.price)}> Add to cart</Button>
-              </CardActions>
-            </Card>
+                <NavLink
+                  to={`/products/${product.id}`}
+                  key={`All Products: ${product.id}`}
+                >
+                  <CardMedia
+                    component="img"
+                    height="290"
+                    image={product.image}
+                    alt="shoe picture"
+                  />
+                </NavLink>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div" className="productTitle">
+                    {product.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Type: {product.category}
+                    <br />
+                    Price: ${product.price}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    variant="outlined"
+                    size="medium">
+                    <NavLink
+                      to={`/products/${product.id}`}
+                      className="active"
+                    >
+                      Product Details
+                    </NavLink>
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="medium"
+                    onClick={(e) => addToCart(product.id, product.price)}> Add to cart</Button>
+                </CardActions>
+              </Card>
+            </div>
           </div>
-        </div>
-      ))
-      : null}
-  </div>
-);
-  };
+        ))
+        : null}
+    </div>
+  );
+};
 
 export default Products;
