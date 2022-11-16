@@ -48,39 +48,48 @@ const userCartSlice = createSlice({
     product: ['placeholder']
   },
   reducers: {
-    addToCart: (state, action) => {
-      const productInCart = state.cart.find((product) => product.id === action.payload.id);
-      if (productInCart) {
-        productInCart.quantity++;
-      } else {
-        state.cart.push({ ...action.payload, quantity: 1 });
-      }
-    },
-    incrementQuantity: (state, action) => {
-      const product = state.cart.find((product) => product.id === action.payload);
-      product.quantity++;
-    },
-    decrementQuantity: (state, action) => {
-      const product = state.cart.find((product) => product.id === action.payload);
-      if (product.quantity === 1) {
-        product.quantity = 1
-      } else {
-        product.quantity--;
-      }
-    },
+    // addToCart: (state, action) => {
+    //   const productInCart = state.cart.find((product) => product.id === action.payload.id);
+    //   if (productInCart) {
+    //     productInCart.quantity++;
+    //   } else {
+    //     state.cart.push({ ...action.payload, quantity: 1 });
+    //   }
+    // },
+    // incrementQuantity: (state, action) => {
+    //   const product = state.cart.find((product) => product.id === action.payload);
+    //   product.quantity++;
+    // },
+    // decrementQuantity: (state, action) => {
+    //   const product = state.cart.find((product) => product.id === action.payload);
+    //   if (product.quantity === 1) {
+    //     product.quantity = 1
+    //   } else {
+    //     product.quantity--;
+    //   }
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCartByUserIdAsync.fulfilled, (state, action) => {
       state.order = action.payload; //returns orderId, $total, date, status, createdAt, updatedAt, and userId
     })
-    .addCase(fetchOrderProductsByOrderIdAsync.fulfilled, (state, action) => {
+    builder.addCase(fetchOrderProductsByOrderIdAsync.fulfilled, (state, action) => {
       state.orderProducts = action.payload //returns orderId, productId, qty, price, createdAt, updatedAt
     })
-    .addCase(fetchProduct.fulfilled, (state, action) => {
+    builder.addCase(fetchProduct.fulfilled, (state, action) => {
       state.product = action.payload
     });
   },
 });
+
+
+export const CartByUserId = state => {
+  return state.user_cart.order.id;
+}
+
+export const OrderProducts = state => {
+  return state.user_cart.orderProducts;
+}
 
 export const showUserCart = (state) => {
   return state.user_cart;
@@ -89,9 +98,9 @@ export const showUserCart = (state) => {
 export default userCartSlice.reducer;
 
 //Added export for reducers
-export const {
-  addToCart,
-  incrementQuantity,
-  decrementQuantity,
-  removeItem,
-} = userCartSlice.actions;
+// export const {
+//   addToCart,
+//   incrementQuantity,
+//   decrementQuantity,
+//   removeItem,
+// } = userCartSlice.actions;
