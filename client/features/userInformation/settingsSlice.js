@@ -5,8 +5,8 @@ const initialState = {};
 
 export const fetchSingleUser = createAsyncThunk(
   'fetchSingleUser',
-  async (id) => {
-    const { data } = await axios.get(`/api/users/${id}`);
+  async (userId) => {
+    const { data } = await axios.get(`/api/users/${userId}`);
     return data;
   }
 );

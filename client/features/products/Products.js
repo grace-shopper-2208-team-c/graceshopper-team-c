@@ -9,7 +9,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector(allProducts);
@@ -25,7 +24,7 @@ const Products = () => {
   console.log('products before sort', products);
 
   function sortAscending() {
-    return sortedArray.sort((a, b) => a.price - b.price);   
+    return sortedArray.sort((a, b) => a.price - b.price);
     // this.setState({ prices })
   };
 
@@ -39,41 +38,37 @@ const Products = () => {
   const addToCart = (prod, price) => {
     if (isLoggedIn) {
       //logic for logged in user
-
-    }
-    else if (!isLoggedIn) {
+    } else if (!isLoggedIn) {
       // logic for not logged in user
-      let q = 1
+      let q = 1;
       const totalPrice = price * q;
 
       const p = {
         productId: prod,
         quantity: q,
-        price: totalPrice
-      }
+        price: totalPrice,
+      };
 
       const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
 
       if (!existingCart[0]) {
-        existingCart.push(p)
-      }
-      else {
+        existingCart.push(p);
+      } else {
         let itemExists = false;
         for (let i = 0; i < existingCart.length; i++) {
           if (p.productId == existingCart[i].productId) {
-            console.log('product exists')
-            existingCart[i].quantity += p.quantity
-            itemExists = true
+            console.log('product exists');
+            existingCart[i].quantity += p.quantity;
+            itemExists = true;
           }
+        }
+        if (!itemExists) {
+          existingCart.push(p);
+        }
       }
-      if (!itemExists) {
-        existingCart.push(p)
-      }
+      localStorage.setItem('cart', JSON.stringify(existingCart));
     }
-    localStorage.setItem('cart', JSON.stringify(existingCart));
-
-  }
-}
+  };
 
 return (
 
@@ -82,8 +77,8 @@ return (
     <label for="sort">Sort</label>
       <select>
         <option value="default" onClick={"/products/"}>Default</option>
-        <option value="high-price" onClick={sortDescending}>High Price</option>
-        <option value="low-price" onClick={sortAscending}>Low Price</option>
+        <option value="high-price" onClick={sortAscending}>High Price</option>
+        <option value="low-price" onClick={sortDescending}>Low Price</option>
       </select>
     </div>
     {products && products.length
