@@ -2,8 +2,6 @@
 
 ## Setup
 
-Quick test to see if the push works - Tim
-
 To use this as boilerplate, you'll need to take the following steps:
 
 - Don't fork or clone this repo! Instead, create a new, empty
@@ -45,8 +43,8 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 - start:dev:logger is the same as start:dev, but you will see your SQL queries (can be helpful for debugging)
 - start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
 
-test
 =========
+
 # FS-App-Template
 
 ## Setup
