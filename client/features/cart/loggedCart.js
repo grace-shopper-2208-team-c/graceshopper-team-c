@@ -7,10 +7,22 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoggedCart = () => {
 
+    async function deleteItem(pid) {
+        try {
+            await axios.delete(`/api/orders/cartProducts/${cartOrderId}/${pid}`)
+            console.log(`Deleted product`)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    
     const products = useSelector(allProducts);
     useEffect(() => {
         dispatch(fetchProducts());
@@ -22,13 +34,14 @@ const LoggedCart = () => {
     useEffect(() => {
         dispatch(fetchCartByUserIdAsync(userId))
     }, [dispatch])
+
     const cartOrderId = useSelector(CartByUserId);
 
     const orderProducts = useSelector(OrderProducts);
-    let cartProducts = orderProducts
+
     useEffect(() => {
         dispatch(fetchOrderProductsByOrderIdAsync(userId)) //array of objects
-    }, [dispatch] )
+    }, [dispatch])
 
     let subTotal = 0;
     const addTotal = (p) => {
@@ -36,7 +49,7 @@ const LoggedCart = () => {
     }
 
     if (Array.isArray(orderProducts)){
-    const ordersMap = orderProducts.map((CartItem) => {
+        const ordersMap = orderProducts.map((CartItem) => {
         // check to see if there is a local storage cart. if not, return message letting user know cart is empty
         if (orderProducts == []) {
             return (
@@ -44,6 +57,7 @@ const LoggedCart = () => {
             )
         }
         else {
+            console.log(CartItem)
 
             // Function to take the guest cart item's product id and find the actual product for display information
             let singleProduct = (val) => {
@@ -81,7 +95,7 @@ const LoggedCart = () => {
                         <Paper elevation={3}>
                             <img src={singleProduct('image')} className="cartImage"></img>
                             <h3>{singleProduct('name')}<DeleteForeverIcon onClick={() => deleteItem(CartItem.productId)} /></h3>
-                            <p>Quantity: <button onClick={() => decQuantity(CartItem.productId)}>-</button> {CartItem.quantity} <button onClick={() => incQuantity(CartItem.productId)}>+</button></p>
+                            <p>Quantity: <button onClick={() => CartItem.quantity--}>-</button> {CartItem.quantity} <button onClick={() => cartItem.quantity--}>+</button></p>
                             <p>Price: ${CartItem.price}</p>
                         </Paper>
                     </Box>
@@ -112,6 +126,5 @@ const LoggedCart = () => {
     );
     }
 }
-
 
 export default LoggedCart

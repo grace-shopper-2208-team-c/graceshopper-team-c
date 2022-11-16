@@ -149,6 +149,11 @@ height: 64px;
   background-color:rgb(248, 245, 245);
   padding-top: 15px;
 }
+
+.loggedinCartHolder {
+  background-color:rgb(248, 245, 245);
+  padding-top: 15px;
+}
 .dropdown {
   position: relative;
   display: inline-block;
