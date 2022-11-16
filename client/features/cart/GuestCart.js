@@ -104,10 +104,8 @@ const GuestCart = () => {
     return (
         <div className="guestCartHolder">
             <h1 align="center">Cart</h1>
-            <hr />
             {ordersMap}
-            <hr />
-            <div className="guestCartButtons">
+            <div className="guestCartButtons" align="center">
                 <h2 style={{ marginLeft: "10px" }}>Subtotal: ${subTotal.toFixed(2)}
                     <Button
                         variant="outlined"
