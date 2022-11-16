@@ -169,3 +169,8 @@ height: 64px;
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.shoelist {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}

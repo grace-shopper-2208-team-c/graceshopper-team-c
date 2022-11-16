@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 
 const Products = () => {
   const dispatch = useDispatch();
-  const sortedArray = useSelector(allProducts);
+  const products = useSelector(allProducts);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const userId = useSelector((state) => state.auth.me.id);
 
@@ -19,7 +19,7 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  // let sortedArray = [...products]; //products is reference to state. state cannot be altered directly, so we deepcopy into new mutable object rather than dispatch actions to mutate. sortedArray can be sorted in place below
+  let sortedArray = [...products]; //products is reference to state. state cannot be altered directly, so we deepcopy into new mutable object rather than dispatch actions to mutate. sortedArray can be sorted in place below
 
   function sortAscending() {
     sortedArray.sort((a, b) => a.price - b.price);
