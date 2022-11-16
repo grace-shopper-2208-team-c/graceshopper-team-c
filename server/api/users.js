@@ -3,34 +3,17 @@ const {
   models: { User },
 } = require('../db');
 
-const authAdmin = async (req, res, next) => {
-  const token = req.headers.authorization;
-  const currentUser = await User.findByToken(token);
-
-  req.user = currentUser;
-  if (currentUser.dataValues.isAdmin) {
-    next();
-  } else {
-    const error = new Error('Not an Admin gg nub');
-    error.status = 401;
-    next(error);
-  }
-};
-
-router.get('/', authAdmin, async (req, res, next) => {
-  const user = req.user;
-  if (user.dataValues.isAdmin === true) {
-    try {
-      const users = await User.findAll({
-        // explicitly select only the id and email fields - even though
-        // users' passwords are encrypted, it won't help if we just
-        // send everything to anyone who asks!
-        attributes: ['id', 'email', 'username'],
-      });
-      res.json(users);
-    } catch (err) {
-      next(err);
-    }
+router.get('/', async (req, res, next) => {
+  try {
+    const users = await User.findAll({
+      // explicitly select only the id and email fields - even though
+      // users' passwords are encrypted, it won't help if we just
+      // send everything to anyone who asks!
+      attributes: ['id', 'email', 'username'],
+    });
+    res.json(users);
+  } catch (err) {
+    next(err);
   }
 });
 
