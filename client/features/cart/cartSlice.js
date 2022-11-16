@@ -13,10 +13,40 @@ export const fetchCartByUserIdAsync = createAsyncThunk(
   }
 );
 
+export const fetchOrderProductsByOrderIdAsync = 
+createAsyncThunk(
+  'cartProducts',
+  async (orderId) => {
+    try {
+      const { data } = await axios.get(`/api/orders/cartProducts/${orderId}`);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
+export const fetchProduct = 
+createAsyncThunk(
+  'singleProduct',
+  async (id) => {
+    try {
+      const { data } = await axios.get(`/api/products/${id}`);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 //Added reducers
 const userCartSlice = createSlice({
   name: 'user_cart',
-  initialState: {},
+  initialState: {
+    order: {},
+    orderProducts: {},
+    product: ['placeholder']
+  },
   reducers: {
     addToCart: (state, action) => {
       const productInCart = state.cart.find((product) => product.id === action.payload.id);
@@ -41,7 +71,13 @@ const userCartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCartByUserIdAsync.fulfilled, (state, action) => {
-      return action.payload;
+      state.order = action.payload; //returns orderId, $total, date, status, createdAt, updatedAt, and userId
+    })
+    .addCase(fetchOrderProductsByOrderIdAsync.fulfilled, (state, action) => {
+      state.orderProducts = action.payload //returns orderId, productId, qty, price, createdAt, updatedAt
+    })
+    .addCase(fetchProduct.fulfilled, (state, action) => {
+      state.product = action.payload
     });
   },
 });
