@@ -1,20 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { showAllUsers, fetchAllUsers } from './usersSlice';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 const AdminHome = () => {
-  const users = useSelector(showAllUsers);
-  const dispatch = useDispatch();
-  console.log(users);
-
-  useEffect(() => {
-    dispatch(fetchAllUsers());
-  }, [dispatch]);
-
   return (
     <div>
       <div
