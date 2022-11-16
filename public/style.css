@@ -144,3 +144,8 @@ height: 64px;
   float: left;
   margin-right: 20px;
 }
+
+.guestCartHolder {
+  background-color:rgb(248, 245, 245);
+  padding-top: 15px;
+}
