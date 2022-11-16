@@ -21,19 +21,15 @@ const Products = () => {
 
   let sortedArray = {...products};
 
-  console.log('products before sort', products);
-
   function sortAscending() {
-    return sortedArray.sort((a, b) => a.price - b.price);
-    // this.setState({ prices })
+    sortedArray.sort((a, b) => a.price - b.price);
+    return sortedArray;
   };
 
   function sortDescending() {
-    return sortedArray.sort((a, b) => a.price - b.price).reverse();
-    // this.setState({ prices })
+    sortedArray.sort((a, b) => a.price - b.price).reverse();
+    return sortedArray;
   };
-
-  console.log('products after sort', sortedArray);
 
   const addToCart = (prod, price) => {
     if (isLoggedIn) {
@@ -74,11 +70,11 @@ return (
 
   <div className="products">
     <div className="dropdown">
-    <label for="sort">Sort</label>
+      <label htmlFor="sort">Sort</label>
       <select>
-        <option value="default" onClick={"/products/"}>Default</option>
-        <option value="high-price" onClick={sortAscending}>High Price</option>
-        <option value="low-price" onClick={sortDescending}>Low Price</option>
+        <option value={sortedArray}>Default</option>
+        <option value={sortAscending}>High Price</option>
+        <option value={sortDescending}>Low Price</option>
       </select>
     </div>
     {products && products.length
