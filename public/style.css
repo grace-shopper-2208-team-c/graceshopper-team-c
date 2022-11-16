@@ -142,5 +142,30 @@ height: 64px;
   height: 150px;
   width: 175px;
   float: left;
-  margin-right: 20px;
+  margin-right: 40px;
+}
+
+.guestCartHolder {
+  background-color:rgb(248, 245, 245);
+  padding-top: 15px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 75px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

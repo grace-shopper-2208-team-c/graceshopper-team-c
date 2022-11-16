@@ -99,7 +99,7 @@ const users = [
     username: 'nelda',
     email: 'neldacarney@musanpoly.com',
     password: 'default',
-    admin: false,
+    isAdmin: false,
   },
   {
     name: 'Willie Jennings',
@@ -111,7 +111,7 @@ const users = [
     username: 'willie',
     email: 'williejennings@musanpoly.com',
     password: 'default',
-    admin: false,
+    isAdmin: true,
   },
   {
     name: 'Jewel Sparks',
@@ -123,7 +123,7 @@ const users = [
     email: 'jewelsparks@musanpoly.com',
     username: 'jewel',
     password: 'default',
-    admin: true,
+    isAdmin: true,
   },
   {
     name: 'Cristina Contreras',
@@ -135,7 +135,7 @@ const users = [
     username: 'cristina',
     email: 'cristinacontreras@musanpoly.com',
     password: 'default',
-    admin: false,
+    isAdmin: false,
   },
   {
     name: 'Evans Small',
@@ -147,7 +147,7 @@ const users = [
     username: 'evans',
     email: 'evanssmall@musanpoly.com',
     password: 'default',
-    admin: false,
+    isAdmin: false,
   },
   {
     name: 'Barker Booker',
@@ -159,7 +159,7 @@ const users = [
     username: 'barker',
     email: 'barkerbooker@musanpoly.com',
     password: 'default',
-    admin: true,
+    isAdmin: true,
   },
 ];
 
