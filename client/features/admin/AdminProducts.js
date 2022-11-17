@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { allProducts, fetchProducts } from '../products/productsSlice';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -16,6 +15,8 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import DeleteProduct from './DeleteProduct';
+import AddProduct from './AddProduct';
 
 const AdminProducts = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const AdminProducts = () => {
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div
@@ -34,6 +35,7 @@ const AdminProducts = () => {
         alignItems: 'center',
       }}
     >
+      <strong style={{ fontSize: 20 }}>Admin Products Page</strong>
       <TableContainer component={Paper} style={{ width: 1200 }}>
         <Table stickyHeader={true}>
           <TableHead
@@ -81,9 +83,7 @@ const AdminProducts = () => {
                   <EditIcon
                     sx={{ '&:hover': { color: 'darkgrey', cursor: 'pointer' } }}
                   ></EditIcon>
-                  <DeleteIcon
-                    sx={{ '&:hover': { color: 'darkgrey', cursor: 'pointer' } }}
-                  ></DeleteIcon>
+                  <DeleteProduct id={product.id} />
                 </TableCell>
               </TableRow>
             ))}
@@ -100,6 +100,11 @@ const AdminProducts = () => {
           }}
         />
       </Link>
+      <br></br>
+      <br></br>
+      <br></br>
+
+      <AddProduct />
     </div>
   );
 };
