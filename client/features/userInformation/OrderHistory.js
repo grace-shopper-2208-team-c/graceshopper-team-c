@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userOrdersAll, fetchUserOrders } from './ordersSlice';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
 
 const OrderHistory = (props) => {
   const orders = useSelector(userOrdersAll);
   const { id } = props;
   const dispatch = useDispatch();
-  console.log(orders, '***********************');
 
   useEffect(() => {
     dispatch(fetchUserOrders(id));
@@ -30,7 +30,7 @@ const OrderHistory = (props) => {
               }}
             >
               <div>
-                {order.date}
+                {moment().format('MMMM Do YYYY, h:mm:ss a')}
                 <br></br>
                 Amount: ${order.total}
                 <br></br>
