@@ -16,6 +16,7 @@ const LoggedCart = () => {
         try {
             await axios.delete(`/api/orders/cartProducts/${cartOrderId}/${pid}`)
             console.log(`Deleted product`)
+            window.location.reload();
         }
         catch (err) {
             console.log(err)
