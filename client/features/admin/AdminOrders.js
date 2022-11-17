@@ -32,6 +32,7 @@ const Orders = () => {
         alignItems: 'center',
       }}
     >
+      <strong style={{ fontSize: 20 }}>Admin Orders Page</strong>
       <TableContainer component={Paper} style={{ width: 800 }}>
         <Table stickyHeader={true}>
           <TableHead
