@@ -52,6 +52,19 @@ router.get('/cartProducts/:orderId', async (req, res, next) => {
   }
 });
 
+router.get('/userorder/:userId', async (req, res, next) => {
+  try {
+    const userOrders = await Order.findAll({
+      where: {
+        userId: req.params.userId,
+      },
+    });
+    res.json(userOrders);
+  } catch (err) {
+    next(err);
+  }
+});
+
 //Delete product from cart order
 router.delete('/cartProducts/:orderid/:productid', async (req, res, next) => {
   try {
@@ -62,14 +75,13 @@ router.delete('/cartProducts/:orderid/:productid', async (req, res, next) => {
       where: {
         orderId: orderid,
         productId: productid,
-      }
+      },
     });
     deleteProduct.destroy();
   } catch (err) {
     next(err);
   }
 });
-
 
 router.get('/admin/orders', async (req, res, next) => {
   try {
@@ -112,8 +124,5 @@ router.delete('/:id', async (req, res, next) => {
     console.log(err);
   }
 });
-
-
-
 
 module.exports = router;

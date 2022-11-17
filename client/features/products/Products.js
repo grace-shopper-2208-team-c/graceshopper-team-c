@@ -23,17 +23,17 @@ const Products = () => {
 
   function sortAscending() {
     sortedArray.sort((a, b) => a.price - b.price);
-    console.log("sorted ascending")
-    console.log(sortedArray)
+    console.log('sorted ascending');
+    console.log(sortedArray);
     return sortedArray;
-  };
+  }
 
   function sortDescending() {
     sortedArray.sort((a, b) => a.price - b.price).reverse();
-    console.log("sorted descending")
-    console.log(sortedArray)
+    console.log('sorted descending');
+    console.log(sortedArray);
     return sortedArray;
-  };
+  }
 
   const addToCart = (prod, price) => {
     if (isLoggedIn) {
@@ -70,26 +70,23 @@ const Products = () => {
     }
   };
 
-  const [userSelection, setUserSelection] = useState('High Price')
+  const [userSelection, setUserSelection] = useState('High Price');
 
   //Sort dropdown menu event handler
   const handleSelection = (evt) => {
     const userSelection = evt.target.value;
-    setUserSelection(userSelection)
-  }
-
+    setUserSelection(userSelection);
+  };
 
   //Use state to determine sorting
   if (userSelection == 'High Price') {
-    sortDescending()
+    sortDescending();
   } else if (userSelection == 'Low Price') {
-    sortAscending()
+    sortAscending();
   }
 
   return (
-
     <div className="products">
-
       <div className="dropdown">
         <label htmlFor="sort">Sort</label>
         <select onChange={handleSelection}>
@@ -102,59 +99,66 @@ const Products = () => {
       <div className="shoelist">
         {sortedArray && sortedArray.length
           ? sortedArray.map((product) => (
-            <div key={`Single Product: ${product.id}`}>
-              <div className="product row">
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    minHeight: 400,
-                  }}
-                >
-                  <NavLink
-                    to={`/products/${product.id}`}
-                    key={`All Products: ${product.id}`}
+              <div key={`Single Product: ${product.id}`}>
+                <div className="product row">
+                  <Card
+                    sx={{
+                      maxWidth: 345,
+                      minHeight: 400,
+                    }}
                   >
-                    <CardMedia
-                      component="img"
-                      height="290"
-                      image={product.image}
-                      alt="shoe picture"
-                    />
-                  </NavLink>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className="productTitle">
-                      {product.name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Type: {product.category}
-                      <br />
-                      Price: ${product.price}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      variant="outlined"
-                      size="medium">
-                      <NavLink
-                        to={`/products/${product.id}`}
-                        className="active"
+                    <NavLink
+                      to={`/products/${product.id}`}
+                      key={`All Products: ${product.id}`}
+                    >
+                      <CardMedia
+                        component="img"
+                        height="290"
+                        image={product.image}
+                        alt="shoe picture"
+                      />
+                    </NavLink>
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        className="productTitle"
                       >
-                        Product Details
-                      </NavLink>
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      size="medium"
-                      onClick={(e) => addToCart(product.id, product.price)}> Add to cart</Button>
-                  </CardActions>
-                </Card>
+                        {product.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Type: {product.category}
+                        <br />
+                        Price: ${product.price}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button variant="outlined" size="medium">
+                        <NavLink
+                          to={`/products/${product.id}`}
+                          className="active"
+                        >
+                          Product Details
+                        </NavLink>
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        size="medium"
+                        onClick={(e) => addToCart(product.id, product.price)}
+                      >
+                        {' '}
+                        Add to cart
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </div>
               </div>
-            </div>
-          ))
+            ))
           : null}
       </div>
-
     </div>
-  )};
+  );
+};
 
 export default Products;
