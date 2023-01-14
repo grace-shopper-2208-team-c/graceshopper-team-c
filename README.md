@@ -1,6 +1,6 @@
 ### Grace HOPs E-commerce Site
 
-Grace HOPs is an ecommerce site developed with NodeJS, React, Express, Redux, PostgreSQL, Sequelize, and Material UI. This was developed as a project in Fullstack Academy's immersive software engineering bootcamp.
+Grace HOPs is an ecommerce site developed with NodeJS, React, Express, Redux, PostgreSQL, Sequelize, and Material UI. This was developed as a project in Fullstack Academy's immersive software engineering bootcamp. The autors of the project are Tim Schwichtenberg, Diego Rivera, Dillon Castelluccio, and Harry Huang.
 
 ## Start Instructions
 We assume you already have node.js and postgresql installed. If not, please install them prior to running this repository.
